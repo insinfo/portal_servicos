@@ -1,0 +1,98 @@
+:host {
+  display: block;
+}
+
+.portal-welcome {
+  isolation: isolate;
+}
+
+.bg-vista {
+  background-image: url('assets/images/background-vista.jpeg');
+  background-size: cover;
+  background-position: center;
+}
+
+.portal-bg-video {
+  object-fit: cover;
+  z-index: 0;
+}
+
+.bg-overlay {
+  background:
+    linear-gradient(180deg, rgba(3, 31, 76, 0.55) 0%, rgba(5, 71, 151, 0.78) 52%, rgba(2, 39, 92, 0.92) 100%);
+  z-index: 1;
+}
+
+.scroll-container {
+  z-index: 2;
+}
+
+.portal-brand {
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.28);
+}
+
+.logo-brasao {
+  height: 64px;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.22));
+}
+
+.letter-spacing-sm {
+  letter-spacing: 0.1em;
+}
+
+.max-w-700 {
+  max-width: 700px;
+}
+
+.max-w-900 {
+  max-width: 900px;
+}
+
+.portal-heading h1 {
+  text-shadow: 0 14px 36px rgba(0, 0, 0, 0.3);
+}
+
+.portal-heading p {
+  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.34);
+}
+
+.portal-feature {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 40px rgba(4, 35, 83, 0.14);
+  backdrop-filter: blur(8px);
+}
+
+.portal-feature i {
+  color: #bfe8ff;
+}
+
+.btn-login {
+  border-radius: 6px;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  min-width: min(100%, 290px);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.btn-login:hover,
+.btn-login:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 1rem 2rem rgba(3, 35, 84, 0.28) !important;
+}
+
+@media (max-width: 767.98px) {
+  .portal-feature-grid {
+    max-width: 420px;
+  }
+
+  .portal-heading h1 {
+    font-size: 2.35rem;
+  }
+
+  .logo-brasao {
+    height: 56px;
+  }
+}

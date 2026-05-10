@@ -1,0 +1,231 @@
+<!-- Main navbar (Layout 6 - Horizontal) -->
+<div *ngIf="isLayout6" class="navbar navbar-light navbar-expand-xl navbar-static border-bottom">
+  <div class="container-fluid">
+    <div class="navbar-brand flex-1 flex-xl-0">
+      <a class="d-inline-flex align-items-center" [routerLink]="PortalRoutePaths.home.toUrl()">
+        <img src="assets/images/brasao_branco_sm.png" alt="Brasão" class="h-32px invert-dark">
+        <span class="ms-2 fw-bold text-body">Portal do Cidadão</span>
+      </a>
+    </div>
+
+    <div
+      class="d-flex w-100 w-xl-auto overflow-auto overflow-xl-visible scrollbar-hidden border-top border-top-xl-0 order-1 order-xl-0 pt-2 pt-xl-0 mt-2 mt-xl-0">
+      <ul class="nav gap-1 justify-content-center flex-nowrap flex-xl-wrap mx-auto">
+        <li class="nav-item">
+          <a [routerLink]="PortalRoutePaths.home.toUrl()" class="navbar-nav-link rounded"
+            [class.active]="currentPage == 'home'" (click)="setCurrentPage('home')">
+            <i class="ph-house me-2"></i>
+            Início
+          </a>
+        </li>
+
+        <li class="nav-item nav-item-dropdown-xl dropdown" liDropdown placement="bottom">
+          <button type="button" class="navbar-nav-link dropdown-toggle rounded border-0"
+            [class.active]="isNavigationMenuActive" liDropdownToggle>
+            <i class="ph-list-dashes me-2"></i>
+            Navegação
+          </button>
+
+          <div class="dropdown-menu p-0" liDropdownMenu>
+            <div class="d-xl-flex">
+              <div
+                class="d-flex flex-row flex-xl-column bg-light overflow-auto overflow-xl-visible rounded-top rounded-top-xl-0 rounded-start-xl">
+                <div class="flex-1 border-bottom border-bottom-xl-0 p-2 p-xl-3">
+                  <div class="fw-bold border-bottom d-none d-xl-block pb-2 mb-2">Portal</div>
+                  <ul class="nav nav-pills flex-xl-column flex-nowrap text-nowrap justify-content-center wmin-xl-300">
+                    <li class="nav-item" *ngFor="let item of layout6MenuItems">
+                      <a [routerLink]="item.routePath" class="nav-link rounded" [class.active]="currentPage == item.id"
+                        (click)="setCurrentPage(item.id)" liDropdownItem>
+                        <i [class]="item.iconClass + ' me-2'"></i>
+                        {{ item.label }}
+                        <i class="ph-arrow-right nav-item-active-indicator d-none d-xl-inline-block ms-auto"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="dropdown-scrollable-xl p-3 wmin-xl-500">
+                <div class="row">
+                  <div class="col-lg-6 mb-3 mb-lg-0">
+                    <div class="fw-bold border-bottom pb-2 mb-2">Solicitações</div>
+                    <a [routerLink]="PortalRoutePaths.meusPedidos.toUrl()" class="dropdown-item rounded"
+                      [class.active]="currentPage == 'meus-pedidos'" (click)="setCurrentPage('meus-pedidos')"
+                      liDropdownItem>
+                      <i class="ph-clipboard-text me-2"></i>
+                      Minhas solicitações
+                    </a>
+                    <a [routerLink]="PortalRoutePaths.novoPedido.toUrl()" class="dropdown-item rounded"
+                      [class.active]="currentPage == 'novo-pedido'" (click)="setCurrentPage('novo-pedido')"
+                      liDropdownItem>
+                      <i class="ph-plus-circle me-2"></i>
+                      Nova solicitação
+                    </a>
+                    <a [routerLink]="PortalRoutePaths.servicos.toUrl()" class="dropdown-item rounded"
+                      [class.active]="currentPage == 'servicos'" (click)="setCurrentPage('servicos')" liDropdownItem>
+                      <i class="ph-squares-four me-2"></i>
+                      Serviços
+                    </a>
+                  </div>
+
+                  <div class="col-lg-6">
+                    <div class="fw-bold border-bottom pb-2 mb-2">Conta</div>
+                    <a [routerLink]="PortalRoutePaths.perfil.toUrl()" class="dropdown-item rounded"
+                      [class.active]="currentPage == 'perfil'" (click)="setCurrentPage('perfil')" liDropdownItem>
+                      <i class="ph-user-circle me-2"></i>
+                      Perfil
+                    </a>
+                    <a [routerLink]="PortalRoutePaths.ajuda.toUrl()" class="dropdown-item rounded"
+                      [class.active]="currentPage == 'ajuda'" (click)="setCurrentPage('ajuda')" liDropdownItem>
+                      <i class="ph-question me-2"></i>
+                      Ajuda e suporte
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <portal-navbar-actions [isLayout6]="isLayout6" [isDarkTheme]="isDarkTheme" [userName]="userName"
+      (layoutChange)="setLayout($event)" (themeChange)="setTheme($event)" (notificationsOpen)="goToNotifications()"
+      (logout)="onLogout()">
+    </portal-navbar-actions>
+  </div>
+</div>
+
+<!-- Page content -->
+<div class="page-content portal-shell" [class.bg-light]="isLayout6">
+
+  <!-- Main sidebar (Layout 1 only) -->
+  <div *ngIf="!isLayout6" class="sidebar sidebar-dark sidebar-main sidebar-expand-lg h-100"
+    [class.sidebar-mobile-expanded]="isMobileSidebarOpen">
+    <div class="sidebar-content h-100 d-flex flex-column">
+      <div class="sidebar-section portal-sidebar-brand-section">
+        <div class="sidebar-section-body d-flex align-items-center py-3">
+          <a class="portal-sidebar-brand sidebar-resize-hide" [routerLink]="PortalRoutePaths.home.toUrl()">
+            <img src="assets/images/logo_pmro_color.svg" alt="Brasão" class="portal-sidebar-logo">
+            <span class="ms-1">
+              <span class="portal-sidebar-brand-kicker">Prefeitura</span>
+              <span class="portal-sidebar-brand-title">Rio das Ostras</span>
+            </span>
+          </a>
+          <button type="button" class="btn btn-flat-white btn-icon btn-sm rounded-pill border-transparent sidebar-mobile-main-toggle d-lg-none ms-auto" (click)="closeMobileSidebar()">
+            <i class="ph-x"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="sidebar-section flex-fill">
+        <ul class="nav nav-sidebar pt-2">
+          <li class="nav-item-header">
+            <div class="text-uppercase fs-xs lh-sm opacity-50 sidebar-resize-hide">Portal</div>
+            <i class="ph-dots-three sidebar-resize-show"></i>
+          </li>
+          <li class="nav-item" *ngFor="let item of navItems">
+            <a [routerLink]="item.routePath" class="nav-link py-2" [class.active]="currentPage == item.id"
+              (click)="setCurrentPage(item.id)">
+              <i [class]="item.iconClass"></i>
+              <span>{{ item.label }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar-section">
+        <ul class="nav nav-sidebar py-2">
+          <li class="nav-item">
+            <a href="javascript:void(0)" class="nav-link" (click)="onLogout()">
+              <i class="ph-sign-out"></i>
+              <span>Sair</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content area -->
+  <div class="content-wrapper">
+    <div class="content-inner">
+      <!-- Top navbar for Layout 1 (inside content area) -->
+      <div *ngIf="!isLayout6" class="navbar navbar-light navbar-expand-lg border-bottom px-3">
+        <div class="container-fluid px-0">
+          <div class="d-flex d-lg-none me-2">
+            <button type="button" class="navbar-toggler sidebar-mobile-main-toggle rounded-pill"
+              (click)="toggleMobileSidebar()">
+              <i class="ph-list"></i>
+            </button>
+          </div>
+
+          <nav class="breadcrumb py-2 mb-0 d-none d-sm-flex" aria-label="Breadcrumb">
+            <a class="breadcrumb-item" [routerLink]="PortalRoutePaths.home.toUrl()" aria-label="Início">
+              <i class="ph-house"></i>
+            </a>
+            <span *ngIf="currentPage == 'home'" class="breadcrumb-item active">Início</span>
+            <a *ngIf="currentPage != 'home'" class="breadcrumb-item text-muted"
+              [routerLink]="PortalRoutePaths.home.toUrl()">Início</a>
+            <span *ngIf="currentPage != 'home'" class="breadcrumb-item active">{{currentPageLabel}}</span>
+          </nav>
+
+          <div class="ms-auto d-flex align-items-center">
+            <a [routerLink]="PortalRoutePaths.ajuda.toUrl()"
+              class="d-none d-md-flex align-items-center text-body me-3 fs-sm fw-semibold">
+              <i class="ph-lifebuoy me-2"></i>
+              Suporte
+            </a>
+
+            <portal-navbar-actions [isLayout6]="isLayout6" [isDarkTheme]="isDarkTheme" [userName]="userName"
+              (layoutChange)="setLayout($event)" (themeChange)="setTheme($event)"
+              (notificationsOpen)="goToNotifications()" (logout)="onLogout()">
+            </portal-navbar-actions>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="isLayout6" class="page-header">
+        <div class="page-header-content container d-lg-flex">
+          <div class="d-flex">
+            <h4 class="page-title mb-0">
+              Portal do Cidadão - <span class="fw-normal">{{currentPageLabel}}</span>
+            </h4>
+          </div>
+
+          <div class="d-lg-block my-lg-auto ms-lg-auto">
+            <div class="d-sm-flex align-items-center mb-3 mb-lg-0 ms-lg-3">
+              <a [routerLink]="PortalRoutePaths.ajuda.toUrl()" class="d-flex align-items-center text-body py-2">
+                <i class="ph-lifebuoy me-2"></i>
+                Suporte
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content" [class.container]="isLayout6" [class.pt-0]="isLayout6">
+        <router-outlet [routes]="PortalRoutes.allPrivate"></router-outlet>
+      </div>
+
+      <div class="navbar navbar-sm navbar-footer border-top">
+        <div class="container-fluid">
+          <span>© 2026 <a href="https://www.riodasostras.rj.gov.br">Prefeitura Municipal de Rio das Ostras</a></span>
+          <ul class="nav">
+            <li class="nav-item">
+              <a [routerLink]="'ajuda'" class="navbar-nav-link navbar-nav-link-icon rounded">
+                <div class="d-flex align-items-center mx-md-1">
+                  <i class="ph-lifebuoy"></i>
+                  <span class="d-none d-md-inline-block ms-2">Suporte</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile backdrop -->
+<div class="sidebar-mobile-expanded-backdrop" *ngIf="isMobileSidebarOpen" (click)="closeMobileSidebar()"></div>

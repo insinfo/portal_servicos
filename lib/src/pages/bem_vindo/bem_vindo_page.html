@@ -1,0 +1,120 @@
+<div class="portal-welcome w-100 vh-100 position-relative overflow-hidden bg-vista">
+  <video #bgVideo
+         class="portal-bg-video position-absolute top-0 start-0 w-100 h-100"
+         autoplay
+         muted
+         loop
+         preload="auto"
+         poster="assets/images/background-vista.jpeg"
+         [attr.playsinline]="''"
+         [attr.webkit-playsinline]="''">
+    <source src="assets/videos/ro.mp4" type="video/mp4">
+  </video>
+  
+  <!-- Overlay -->
+  <div class="position-absolute top-0 start-0 w-100 h-100 bg-overlay"></div>
+
+  <!-- Scrollable Content Area -->
+  <div class="position-absolute top-0 start-0 w-100 h-100 overflow-auto d-flex flex-column scroll-container">
+
+    <!-- Top header with Acessibilidade -->
+    <div class="d-flex justify-content-end p-4 w-100 flex-shrink-0">
+      <a href="#" class="text-white text-decoration-none d-flex align-items-center gap-2 opacity-75">
+        <i class="ph ph-user-circle fs-base"></i>
+        <span class="fs-sm">Acessibilidade</span>
+      </a>
+    </div>
+
+    <!-- Main content centered -->
+    <div class="flex-fill d-flex flex-column align-items-center justify-content-center px-4 w-100 py-5">
+    
+      <!-- Logo -->
+      <div class="portal-brand d-flex align-items-center justify-content-center gap-3 mb-5">
+        <img src="assets/images/brasao_branco_sm.png" alt="Brasão" class="logo-brasao">
+        <div class="text-start">
+          <div class="fw-bold text-uppercase fs-xs text-white opacity-75 letter-spacing-sm">Prefeitura</div>
+          <div class="fw-bold text-uppercase fs-lg text-white lh-1">Rio das Ostras</div>
+        </div>
+      </div>
+
+      <!-- Title and Subtitle -->
+      <div class="portal-heading text-center mb-5 max-w-700">
+        <h1 class="display-4 fw-bold text-white mb-4 lh-sm">Bem-vindo(a) ao<br>Portal de Serviços</h1>
+        <p class="fs-base text-white opacity-75 mb-0">
+          Abra solicitações de serviços, acompanhe seus pedidos<br>
+          e interaja com a Prefeitura de forma rápida e segura.
+        </p>
+      </div>
+
+      <!-- 3 Features -->
+      <div class="portal-feature-grid row w-100 justify-content-center mb-5 pb-3 max-w-900">
+        <div class="col-md-4 text-white mb-4 mb-md-0">
+          <div class="portal-feature d-flex gap-3 h-100">
+            <i class="ph ph-shield-check fs-2 opacity-75"></i>
+            <div>
+              <div class="fw-bold mb-1 fs-base">Prático</div>
+              <div class="fs-sm opacity-75">Solicite serviços online de forma simples e rápida.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 text-white mb-4 mb-md-0">
+          <div class="portal-feature d-flex gap-3 h-100">
+            <i class="ph ph-lock-key fs-2 opacity-75"></i>
+            <div>
+              <div class="fw-bold mb-1 fs-base">Seguro</div>
+              <div class="fs-sm opacity-75">Seus dados protegidos com a conta gov.br.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 text-white">
+          <div class="portal-feature d-flex gap-3 h-100">
+            <i class="ph ph-chart-line-up fs-2 opacity-75"></i>
+            <div>
+              <div class="fw-bold mb-1 fs-base">Transparente</div>
+              <div class="fs-sm opacity-75">Acompanhe o andamento das suas solicitações.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Login Button -->
+      <button class="btn btn-light text-primary fw-bold px-5 py-3 shadow mb-5 d-inline-flex align-items-center gap-2 btn-login" (click)="goToLogin()">
+        <i class="ph ph-lock-key-fill text-primary"></i>
+        ENTRAR COM GOV.BR
+      </button>
+
+      <!-- Divider -->
+      <div class="w-100 border-top border-white border-opacity-20 mb-4 max-w-900"></div>
+
+      <!-- 3 Bottom Links -->
+      <div class="row w-100 justify-content-center mb-4 max-w-900">
+        <div class="col-md-4 mb-3 mb-md-0 text-center text-md-start">
+          <a href="#" class="d-inline-flex align-items-center gap-2 text-white text-decoration-none opacity-75">
+            <i class="ph ph-shield-check fs-lg"></i>
+            <span class="fs-sm">Como funciona</span>
+          </a>
+        </div>
+        <div class="col-md-4 mb-3 mb-md-0 text-center">
+          <a href="#" class="d-inline-flex align-items-center gap-2 text-white text-decoration-none opacity-75">
+            <i class="ph ph-squares-four fs-lg"></i>
+            <span class="fs-sm">Serviços disponíveis</span>
+          </a>
+        </div>
+        <div class="col-md-4 text-center text-md-end">
+          <a href="#" class="d-inline-flex align-items-center gap-2 text-white text-decoration-none opacity-75">
+            <i class="ph ph-question fs-lg"></i>
+            <span class="fs-sm">Dúvidas frequentes</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="w-100 p-4 pb-3 flex-shrink-0 d-flex flex-column flex-md-row justify-content-between align-items-center text-white opacity-50 fs-xs text-center text-md-start gap-2">
+      <span>© 2026 Prefeitura Municipal de Rio das Ostras - Todos os direitos reservados.</span>
+      <span>Versão 1.0.0</span>
+    </div>
+
+  </div>
+</div>

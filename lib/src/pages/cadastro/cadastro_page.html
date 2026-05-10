@@ -1,0 +1,102 @@
+<!-- Full-screen registration page (public, no sidebar/navbar) -->
+<div class="login-wrapper">
+
+  <!-- Header bar with branding -->
+  <div class="login-header-bar py-3 px-4">
+    <div class="d-flex align-items-center gap-3">
+      <img src="assets/images/brasao_editado_1.svg" alt="Brasão" class="h-40px">
+      <img src="assets/images/logo_pmro_color.svg" alt="PMRO" class="h-20px d-none d-sm-block">
+    </div>
+  </div>
+
+  <div class="flex-fill d-flex justify-content-center align-items-start py-4 px-3">
+    <div class="card shadow-sm wmin-sm-400 wmin-lg-500">
+      <div class="card-body p-4">
+        <div class="text-center mb-4">
+          <div class="bg-primary bg-opacity-10 text-primary rounded-pill d-inline-flex align-items-center justify-content-center w-48px h-48px mb-3">
+            <i class="ph ph-user-plus fs-3"></i>
+          </div>
+          <h5 class="fw-bold mb-1">Criar conta</h5>
+          <p class="text-muted fs-sm">Preencha seus dados para se cadastrar no Portal do Cidadão</p>
+        </div>
+
+        <div class="row g-3">
+          <!-- Nome completo -->
+          <div class="col-12">
+            <label class="form-label fw-semibold fs-sm">Nome completo</label>
+            <input type="text" class="form-control" placeholder="Seu nome e sobrenome"
+                   [(ngModel)]="nomeCompleto">
+          </div>
+
+          <!-- CPF -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold fs-sm">CPF</label>
+            <input type="text" class="form-control" placeholder="000.000.000-00"
+                   [(ngModel)]="cpf">
+          </div>
+
+          <!-- Telefone -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold fs-sm">Telefone</label>
+            <input type="text" class="form-control" placeholder="(22) 99999-0000"
+                   [(ngModel)]="telefone">
+          </div>
+
+          <!-- Email -->
+          <div class="col-12">
+            <label class="form-label fw-semibold fs-sm">E-mail</label>
+            <input type="email" class="form-control" placeholder="seu@email.com"
+                   [(ngModel)]="email">
+          </div>
+
+          <!-- Senha -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold fs-sm">Senha</label>
+            <input type="password" class="form-control" placeholder="Mínimo 8 caracteres"
+                   [(ngModel)]="senha">
+          </div>
+
+          <!-- Confirmar senha -->
+          <div class="col-md-6">
+            <label class="form-label fw-semibold fs-sm">Confirmar senha</label>
+            <input type="password" class="form-control" placeholder="Repita a senha"
+                   [(ngModel)]="confirmarSenha">
+          </div>
+
+          <!-- Termos -->
+          <div class="col-12">
+            <label class="form-check">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="aceitaTermos">
+              <span class="form-check-label fs-sm">
+                Li e aceito os <button type="button" class="btn btn-link link-primary p-0 align-baseline">termos de uso</button>
+                e a <button type="button" class="btn btn-link link-primary p-0 align-baseline">política de privacidade</button>.
+              </span>
+            </label>
+          </div>
+
+          <!-- Botão cadastrar -->
+          <div class="col-12 mt-4">
+            <button class="btn btn-primary w-100"
+                    [disabled]="isLoading || !aceitaTermos"
+                    (click)="onCadastrar()">
+              <span *ngIf="!isLoading">Cadastrar</span>
+              <span *ngIf="isLoading">Cadastrando...</span>
+            </button>
+          </div>
+        </div>
+
+        <p class="text-center text-muted mt-3 mb-0 fs-sm">
+          Já tem conta?
+          <button type="button" (click)="goToLogin()" class="btn btn-link link-primary fw-semibold p-0 align-baseline">Faça login</button>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="border-top py-2 px-4 d-flex justify-content-between bg-light">
+    <span class="text-muted fs-sm">© 2026 Prefeitura Municipal de Rio das Ostras</span>
+    <span class="text-muted fs-sm">Versão 1.0.0</span>
+  </div>
+
+</div>

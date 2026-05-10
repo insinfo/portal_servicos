@@ -1,0 +1,8 @@
+/* app_component styles - kept minimal, global styles in web/style.scss */
+:host {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}

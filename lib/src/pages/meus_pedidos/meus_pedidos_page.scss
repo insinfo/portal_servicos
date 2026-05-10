@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+.row.g-3 .card {
+  border-color: var(--portal-border, #d9e3f0);
+}
+
+.d-flex.flex-column.gap-2 > .card {
+  border-color: var(--portal-border, #d9e3f0) !important;
+}
+
+.d-flex.flex-column.gap-2 > .card:hover {
+  border-color: rgba(var(--portal-primary-rgb, 7, 95, 199), 0.3) !important;
+}
+
+.d-flex.flex-column.gap-2 > .card .rounded-pill {
+  border: 1px solid var(--portal-border);
+}
+
+@media (max-width: 575.98px) {
+  .d-flex.flex-column.gap-2 > .card {
+    align-items: flex-start !important;
+    gap: 1rem;
+  }
+
+  .d-flex.flex-column.gap-2 > .card > .d-flex:last-child {
+    width: 100%;
+    justify-content: space-between;
+  }
+}

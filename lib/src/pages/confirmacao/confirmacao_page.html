@@ -1,0 +1,77 @@
+<!-- Success alert -->
+<div class="portal-success-alert mb-4">
+  <div class="success-icon">
+    <i class="ph ph-check-circle"></i>
+  </div>
+  <div>
+    <h5>Solicitação enviada com sucesso!</h5>
+    <p>Sua solicitação foi registrada e será analisada pela equipe responsável.</p>
+  </div>
+</div>
+
+<!-- Protocol card -->
+<div class="card mb-4">
+  <div class="card-body p-4 text-center">
+    <p class="text-muted mb-2 fs-sm">Número de protocolo</p>
+    <h3 class="fw-bold text-primary mb-3">{{ protocolo }}</h3>
+
+    <div class="d-flex justify-content-center gap-4 flex-wrap">
+      <div class="text-center">
+        <small class="text-muted d-block">Serviço</small>
+        <span class="fw-semibold fs-sm">{{ servico }}</span>
+      </div>
+      <div class="text-center">
+        <small class="text-muted d-block">Prazo estimado</small>
+        <span class="fw-semibold fs-sm">{{ prazoEstimado }}</span>
+      </div>
+      <div class="text-center">
+        <small class="text-muted d-block">Status</small>
+        <span class="badge bg-warning text-dark">Em análise</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tracking timeline -->
+<div class="card mb-4">
+  <div class="card-header bg-transparent">
+    <h6 class="fw-bold mb-0">Acompanhamento</h6>
+  </div>
+  <div class="card-body">
+    <div class="tracking-timeline">
+      <div class="tracking-step completed">
+        <div class="step-dot"><i class="ph ph-check"></i></div>
+        <div class="step-label">Registrado</div>
+        <div class="step-date">Hoje</div>
+      </div>
+      <div class="tracking-step active">
+        <div class="step-dot"><i class="ph ph-magnifying-glass"></i></div>
+        <div class="step-label">Em análise</div>
+        <div class="step-date">—</div>
+      </div>
+      <div class="tracking-step">
+        <div class="step-dot"><i class="ph ph-truck"></i></div>
+        <div class="step-label">Em execução</div>
+        <div class="step-date">—</div>
+      </div>
+      <div class="tracking-step">
+        <div class="step-dot"><i class="ph ph-check-circle"></i></div>
+        <div class="step-label">Concluído</div>
+        <div class="step-date">—</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Action buttons -->
+<div class="d-flex gap-3 flex-wrap">
+  <button class="btn btn-primary" (click)="verMeusPedidos()">
+    <i class="ph ph-clipboard-text me-1"></i> Meus pedidos
+  </button>
+  <button class="btn btn-outline-secondary" (click)="novoPedido()">
+    <i class="ph ph-plus-circle me-1"></i> Nova solicitação
+  </button>
+  <button class="btn btn-light" (click)="voltarInicio()">
+    <i class="ph ph-house me-1"></i> Voltar ao início
+  </button>
+</div>

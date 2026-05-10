@@ -1,0 +1,63 @@
+
+<div class="row g-4">
+  <!-- FAQ -->
+  <div class="col-lg-8">
+    <div class="card">
+      <div class="card-header bg-transparent">
+        <h6 class="fw-bold mb-0">Perguntas frequentes</h6>
+      </div>
+      <div class="card-body p-0">
+        <div *ngFor="let faq of faqs"
+             class="border-bottom cursor-pointer">
+          <div class="d-flex justify-content-between align-items-center px-4 py-3"
+               (click)="toggleFaq(faq.pergunta)">
+            <span class="fw-semibold fs-sm">{{ faq.pergunta }}</span>
+            <i [class]="expandedFaq == faq.pergunta ? 'ph ph-caret-up' : 'ph ph-caret-down'"
+               class="text-muted flex-shrink-0"></i>
+          </div>
+          <div *ngIf="expandedFaq == faq.pergunta"
+               class="px-4 pb-3 text-muted fs-sm lh-lg">
+            {{ faq.resposta }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact info -->
+  <div class="col-lg-4">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h6 class="fw-bold mb-3 fs-sm">
+          <i class="ph ph-phone me-2 text-primary"></i> Telefone
+        </h6>
+        <p class="mb-1 fw-semibold fs-sm">0800-123-4567</p>
+        <small class="text-muted">Segunda a sexta, 8h às 17h</small>
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <h6 class="fw-bold mb-3 fs-sm">
+          <i class="ph ph-envelope-simple me-2 text-primary"></i> E-mail
+        </h6>
+        <p class="mb-1 fw-semibold fs-sm">atendimento@riodas.ostras.rj.gov.br</p>
+        <small class="text-muted">Resposta em até 2 dias úteis</small>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h6 class="fw-bold mb-3 fs-sm">
+          <i class="ph ph-map-pin me-2 text-primary"></i> Presencial
+        </h6>
+        <p class="mb-1 fs-sm">
+          Prefeitura Municipal de Rio das Ostras<br>
+          Rua Campo de Albacora, 75 – Loteamento Atlântica<br>
+          Rio das Ostras / RJ – CEP 28890-000
+        </p>
+        <small class="text-muted">Segunda a sexta, 8h às 17h</small>
+      </div>
+    </div>
+  </div>
+</div>

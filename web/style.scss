@@ -1,0 +1,182 @@
+/* Portal skin over Limitless. Keep component behavior in Dart; this layer is visual only. */
+:root,
+[data-color-theme='light'] {
+  --portal-primary: #075fc7;
+  --portal-primary-rgb: 7, 95, 199;
+  --portal-primary-strong: #043f8f;
+  --portal-cyan: #0797c9;
+  --portal-green: #0d8f68;
+  --portal-ink: #162033;
+  --portal-muted: #65748a;
+  --portal-surface: #ffffff;
+  --portal-surface-soft: #f8fbff;
+  --portal-border: #d9e3f0;
+  --portal-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --portal-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --body-bg: #f5f8fc;
+  --component-active-bg: var(--portal-primary);
+  --component-active-bg-rgb: var(--portal-primary-rgb);
+  --link-color: var(--portal-primary);
+  --link-hover-color: var(--portal-primary-strong);
+  --sidebar-width: 13.75rem;
+}
+
+[data-color-theme='dark'],
+html[data-color-theme='dark'] {
+  --portal-primary: #5ca8ff;
+  --portal-primary-rgb: 92, 168, 255;
+  --portal-primary-strong: #8fc3ff;
+  --portal-cyan: #4cc8e7;
+  --portal-green: #45c99a;
+  --portal-ink: #f3f7fb;
+  --portal-muted: #aab6c8;
+  --portal-surface: #252830;
+  --portal-surface-soft: #1f2229;
+  --portal-border: rgba(255, 255, 255, 0.12);
+  --portal-shadow: 0 0.75rem 1.75rem rgba(0, 0, 0, 0.25);
+  --portal-shadow-lg: 0 1rem 2rem rgba(0, 0, 0, 0.34);
+  --body-bg: #181b21;
+  --body-color: #eef3f8;
+  --body-color-rgb: 238, 243, 248;
+  --border-color: var(--portal-border);
+  --link-color: var(--portal-primary);
+  --link-hover-color: var(--portal-primary-strong);
+}
+
+body {
+  background-color: var(--body-bg);
+}
+
+.portal-shell {
+  background-color: var(--body-bg);
+}
+
+.portal-shell .content {
+  padding: 1.5rem;
+}
+
+.portal-shell .page-header-light,
+.portal-shell .navbar-footer,
+.portal-shell .navbar-static:not(.navbar-dark) {
+  background-color: #ffffff;
+  border-color: var(--portal-border) !important;
+  box-shadow: none !important;
+}
+
+[data-color-theme='dark'] .portal-shell .page-header-light,
+[data-color-theme='dark'] .portal-shell .navbar-footer,
+[data-color-theme='dark'] .portal-shell .navbar-static:not(.navbar-dark) {
+  background-color: rgba(37, 40, 48, 0.88);
+}
+
+.portal-shell .page-title {
+  padding-top: 1.125rem;
+  padding-bottom: 1.125rem;
+}
+
+.portal-shell .page-title h4,
+.portal-shell .page-title h5,
+.portal-shell .page-title h6 {
+  color: var(--portal-ink);
+}
+
+.portal-shell .card {
+  --card-bg: var(--portal-surface);
+  --card-border-color: var(--portal-border);
+  --card-border-radius: 0.5rem;
+  --card-box-shadow: var(--portal-shadow);
+  overflow: hidden;
+}
+
+.portal-shell .card-header,
+.portal-shell .card-footer {
+  border-color: var(--portal-border);
+}
+
+.portal-shell .card-header.bg-transparent {
+  background-color: transparent !important;
+}
+
+.portal-shell .form-control,
+.portal-shell .form-select,
+.login-wrapper .form-control,
+.login-wrapper .form-select {
+  border-color: var(--portal-border);
+  border-radius: 0.5rem;
+}
+
+.portal-shell .form-control:focus,
+.portal-shell .form-select:focus,
+.login-wrapper .form-control:focus,
+.login-wrapper .form-select:focus {
+  border-color: var(--portal-primary);
+  box-shadow: 0 0 0 0.125rem rgba(var(--portal-primary-rgb), 0.22);
+}
+
+.portal-shell .btn,
+.login-wrapper .btn,
+.login-page-wrapper .btn {
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+
+.portal-shell .btn-primary,
+.login-wrapper .btn-primary,
+.login-page-wrapper .btn-primary {
+  --btn-bg: var(--portal-primary);
+  --btn-border-color: var(--portal-primary);
+  --btn-hover-bg: var(--portal-primary-strong);
+  --btn-hover-border-color: var(--portal-primary-strong);
+  --btn-focus-shadow-rgb: var(--portal-primary-rgb);
+}
+
+.portal-shell .badge {
+  border-radius: 99rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.portal-shell .text-muted,
+.login-wrapper .text-muted {
+  color: var(--portal-muted) !important;
+}
+
+.hover-shadow-lg,
+.transition-base {
+  transition:
+    transform var(--transition-base-timer) ease,
+    box-shadow var(--transition-base-timer) ease,
+    border-color var(--transition-base-timer) ease,
+    background-color var(--transition-base-timer) ease;
+}
+
+.hover-shadow-lg:hover,
+.hover-shadow-lg:focus-within {
+  box-shadow: var(--portal-shadow-lg) !important;
+  transform: translateY(-2px);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+[data-color-theme='dark'] .bg-light,
+[data-color-theme='dark'] .bg-white {
+  background-color: var(--portal-surface-soft) !important;
+}
+
+[data-color-theme='dark'] .text-dark {
+  color: #111827 !important;
+}
+
+[data-color-theme='dark'] .list-group-item {
+  background-color: var(--portal-surface);
+  border-color: var(--portal-border);
+  color: var(--body-color);
+}
+
+@media (max-width: 767.98px) {
+  .portal-shell .content {
+    padding: 1rem;
+  }
+}

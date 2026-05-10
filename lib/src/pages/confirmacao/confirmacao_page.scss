@@ -1,0 +1,131 @@
+:host {
+  display: block;
+}
+
+.portal-success-alert {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.25rem;
+  color: #075e45;
+  background: rgba(13, 143, 104, 0.1);
+  border: 1px solid rgba(13, 143, 104, 0.26);
+  border-radius: 0.5rem;
+}
+
+.portal-success-alert h5 {
+  margin-bottom: 0.25rem;
+  color: inherit;
+}
+
+.portal-success-alert p {
+  margin-bottom: 0;
+}
+
+.success-icon {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  color: #fff;
+  background: var(--portal-green, #0d8f68);
+  border-radius: 999px;
+}
+
+.success-icon i {
+  font-size: 1.6rem;
+}
+
+.tracking-timeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  gap: 0.5rem;
+}
+
+.tracking-timeline::before {
+  content: "";
+  position: absolute;
+  top: 1.25rem;
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background: var(--portal-border, #d9e3f0);
+}
+
+.tracking-step {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: var(--portal-muted, #65748a);
+}
+
+.step-dot {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 auto 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--portal-muted, #65748a);
+  background: var(--portal-surface, #fff);
+  border: 2px solid var(--portal-border, #d9e3f0);
+  border-radius: 999px;
+}
+
+.tracking-step.completed .step-dot {
+  color: #fff;
+  background: var(--portal-green, #0d8f68);
+  border-color: var(--portal-green, #0d8f68);
+}
+
+.tracking-step.active .step-dot {
+  color: #fff;
+  background: var(--portal-primary, #075fc7);
+  border-color: var(--portal-primary, #075fc7);
+}
+
+.step-label {
+  font-weight: 700;
+  color: var(--portal-ink, #162033);
+  font-size: 0.82rem;
+}
+
+.step-date {
+  font-size: 0.75rem;
+}
+
+:host-context([data-color-theme='dark']) .portal-success-alert {
+  color: #bff5df;
+  background: rgba(69, 201, 154, 0.12);
+  border-color: rgba(69, 201, 154, 0.28);
+}
+
+@media (max-width: 575.98px) {
+  .tracking-timeline {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .tracking-timeline::before {
+    top: 1.25rem;
+    left: 1.25rem;
+    right: auto;
+    bottom: 1.25rem;
+    width: 2px;
+    height: auto;
+  }
+
+  .tracking-step {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: left;
+  }
+
+  .step-dot {
+    margin: 0;
+  }
+}

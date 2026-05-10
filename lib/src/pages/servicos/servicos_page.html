@@ -1,0 +1,55 @@
+
+<div class="mb-4">
+  <h2 class="fw-bold mb-1">Serviços disponíveis</h2>
+  <p class="text-muted mb-0">Escolha o serviço que deseja solicitar.</p>
+</div>
+
+<!-- Search and Filter bar -->
+<div class="row g-3 mb-4">
+  <div class="col-lg-8">
+    <div class="form-control-feedback form-control-feedback-start">
+      <input type="search" class="form-control bg-white" placeholder="Buscar serviço..."
+             [value]="filtro" (input)="onFiltroInput($event)">
+      <div class="form-control-feedback-icon">
+        <i class="ph-magnifying-glass"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <select class="form-select bg-white">
+      <option value="">Todas as categorias</option>
+      <option value="Limpeza Urbana">Limpeza Urbana</option>
+      <option value="Infraestrutura">Infraestrutura</option>
+      <option value="Meio Ambiente">Meio Ambiente</option>
+      <option value="Saneamento">Saneamento</option>
+    </select>
+  </div>
+</div>
+
+<!-- Service cards grid -->
+<div class="row g-3">
+  <div *ngFor="let servico of servicosFiltrados"
+       class="col-12 col-md-6 col-lg-4">
+    <div class="card card-body portal-service-card h-100 cursor-pointer border shadow-none transition-base"
+         (click)="solicitarServico(servico)">
+      <div class="portal-service-icon text-primary mb-3">
+        <i [class]="servico.iconClass + ' fs-1'"></i>
+      </div>
+      <h6 class="mb-2 fw-bold text-body">{{ servico.titulo }}</h6>
+      <p class="fs-xs text-muted mb-4 flex-fill">{{ servico.descricao }}</p>
+      
+      <div class="d-flex align-items-center justify-content-between mt-auto pt-2 border-top-0">
+        <span class="fs-xs fw-semibold text-primary bg-primary bg-opacity-10 px-2 py-1 rounded-pill">
+          {{ servico.categoria }}
+        </span>
+        <i class="ph-caret-right text-primary"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Empty state -->
+<div *ngIf="servicosFiltrados.length == 0" class="text-center py-5">
+  <i class="ph ph-magnifying-glass fs-1 text-muted opacity-50"></i>
+  <p class="text-muted mt-3 mb-0">Nenhum serviço encontrado para "{{ filtro }}"</p>
+</div>

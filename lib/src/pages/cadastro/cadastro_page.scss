@@ -1,0 +1,55 @@
+:host {
+  display: block;
+}
+
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    linear-gradient(180deg, rgba(7, 95, 199, 0.1), transparent 18rem),
+    var(--body-bg);
+}
+
+.login-header-bar {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid var(--portal-border, #d9e3f0);
+  backdrop-filter: blur(10px);
+}
+
+.card {
+  border-color: var(--portal-border, #d9e3f0);
+  border-radius: 0.5rem;
+  box-shadow: var(--portal-shadow-lg, 0 1rem 2rem rgba(20, 45, 84, 0.12)) !important;
+}
+
+.card-body {
+  position: relative;
+}
+
+.card-body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #075fc7, #0797c9, #0d8f68);
+}
+
+.form-check {
+  padding: 0.875rem 1rem 0.875rem 2.75rem;
+  border: 1px solid var(--portal-border, #d9e3f0);
+  border-radius: 0.5rem;
+  background: var(--portal-surface-soft, #f8fbff);
+}
+
+.form-check-input {
+  margin-left: -1.75rem;
+}
+
+:host-context([data-color-theme='dark']) .login-header-bar,
+:host-context([data-color-theme='dark']) .border-top.bg-light {
+  background-color: rgba(37, 40, 48, 0.88) !important;
+  border-color: var(--portal-border, rgba(255, 255, 255, 0.12)) !important;
+}

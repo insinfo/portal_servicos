@@ -1,0 +1,15 @@
+:host {
+  display: block;
+}
+
+.card {
+  border-color: var(--portal-border, #d9e3f0);
+}
+
+.w-80px.h-80px {
+  border: 2px solid #fff;
+}
+
+.card-header {
+  min-height: 4rem;
+}

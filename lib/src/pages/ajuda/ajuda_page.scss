@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+.card {
+  border-color: var(--portal-border, #d9e3f0);
+}
+
+.card-body.p-0 > .border-bottom {
+  border-color: var(--portal-border, #d9e3f0) !important;
+  transition: background-color var(--transition-base-timer, 0.15s) ease;
+}
+
+.card-body.p-0 > .border-bottom:hover {
+  background: rgba(var(--portal-primary-rgb, 7, 95, 199), 0.05);
+}

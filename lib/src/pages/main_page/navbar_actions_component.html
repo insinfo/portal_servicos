@@ -1,0 +1,95 @@
+<ul class="nav justify-content-end"
+    [class.flex-row]="!isLayout6"
+    [class.order-1]="!isLayout6"
+    [class.order-lg-2]="!isLayout6"
+    [class.gap-1]="isLayout6"
+    [class.flex-xl-1]="isLayout6"
+    [class.order-0]="isLayout6"
+    [class.order-xl-1]="isLayout6">
+  <li class="nav-item dropdown" liDropdown placement="bottom-end">
+    <button type="button" class="navbar-nav-link navbar-nav-link-icon rounded-pill border-0 bg-transparent" liDropdownToggle>
+      <i class="ph-bell"></i>
+      <span class="badge bg-yellow text-black position-absolute top-0 end-0 translate-middle-top zindex-1 rounded-pill mt-1 me-1">200</span>
+    </button>
+    <div class="dropdown-menu dropdown-menu-end p-0 wmin-sm-350" style="max-width: 92vw;" liDropdownMenu>
+      <div class="d-flex align-items-center justify-content-between p-3 border-bottom">
+        <h6 class="mb-0 fw-semibold text-primary">Notificações</h6>
+        <div class="d-flex gap-2">
+          <i class="ph-bell-slash text-body cursor-pointer"></i>
+          <i class="ph-magnifying-glass text-body cursor-pointer"></i>
+        </div>
+      </div>
+      <div class="dropdown-menu-scrollable pb-2" style="max-height: 400px; overflow-y: auto;">
+        <button type="button" class="dropdown-item py-3 d-flex align-items-start border-bottom text-wrap text-start" (click)="openNotifications()" liDropdownItem>
+          <div class="d-flex flex-column flex-fill">
+            <div>
+              <span class="status-indicator bg-primary me-2 align-middle"></span>
+              <span class="align-middle">Foi criado o processo digital 17026/2026 para seu setor!</span>
+            </div>
+            <div class="fs-xs text-muted mt-1 ms-3">14:21:10</div>
+          </div>
+          <i class="ph-trash text-muted ms-2 mt-1"></i>
+        </button>
+        <button type="button" class="dropdown-item py-3 d-flex align-items-start border-bottom text-wrap text-start" (click)="openNotifications()" liDropdownItem>
+          <div class="d-flex flex-column flex-fill">
+            <div>
+              <span class="status-indicator bg-primary me-2 align-middle"></span>
+              <span class="align-middle">Solicitação de Tapa-Buraco aprovada!</span>
+            </div>
+            <div class="fs-xs text-muted mt-1 ms-3">12:57:37</div>
+          </div>
+          <i class="ph-trash text-muted ms-2 mt-1"></i>
+        </button>
+      </div>
+    </div>
+  </li>
+
+  <li class="nav-item nav-item-dropdown-lg dropdown ms-lg-2" liDropdown placement="bottom-end">
+    <button type="button" class="navbar-nav-link align-items-center rounded-pill p-1 border-0 bg-transparent" liDropdownToggle>
+      <div class="status-indicator-container">
+        <div class="bg-primary text-white w-32px h-32px rounded-pill d-flex align-items-center justify-content-center fw-semibold fs-sm">
+          <i class="ph-user"></i>
+        </div>
+      </div>
+      <span class="d-none d-lg-inline-block mx-lg-2 text-body">{{ userName }}</span>
+    </button>
+    <div class="dropdown-menu dropdown-menu-end wmin-sm-250" liDropdownMenu>
+      <div class="dropdown-item-text">CGM: 140050</div>
+      <button liDropdownItem type="button" title="Login Integrado do Portal">
+        <i class="ph ph-user-circle me-2"></i>
+        SALI
+      </button>
+
+      <div class="dropdown-divider"></div>
+
+      <div liDropdownSubmenu placement="start" class="user-menu-dropdown-submenu">
+        <button type="button" class="user-menu-submenu-toggle"
+                liDropdownItem liDropdownSubmenuToggle>
+          <i class="ph-layout me-2"></i> Layouts
+        </button>
+        <div class="user-menu-submenu wmin-sm-200" liDropdownSubmenuMenu>
+          <button type="button" [class.active]="!isLayout6" (click)="setLayout(1)" liDropdownItem>Layout 1 (Sidebar)</button>
+          <button type="button" [class.active]="isLayout6" (click)="setLayout(6)" liDropdownItem>Layout 6 (Horizontal)</button>
+        </div>
+      </div>
+      <div liDropdownSubmenu placement="start" class="user-menu-dropdown-submenu">
+        <button type="button" class="user-menu-submenu-toggle"
+                liDropdownItem liDropdownSubmenuToggle>
+          <i class="ph-paint-brush me-2"></i> Tema
+        </button>
+        <div class="user-menu-submenu wmin-sm-200" liDropdownSubmenuMenu>
+          <button type="button" [class.active]="!isDarkTheme" (click)="setTheme(false)" liDropdownItem>
+            <i class="ph-sun me-2"></i> Tema claro
+          </button>
+          <button type="button" [class.active]="isDarkTheme" (click)="setTheme(true)" liDropdownItem>
+            <i class="ph-moon me-2"></i> Tema escuro
+          </button>
+        </div>
+      </div>
+      <div class="dropdown-divider"></div>
+      <button type="button" (click)="onLogout()" liDropdownItem>
+        <i class="ph-sign-out me-2"></i> Sair
+      </button>
+    </div>
+  </li>
+</ul>

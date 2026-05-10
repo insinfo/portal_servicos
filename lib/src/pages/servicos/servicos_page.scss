@@ -1,0 +1,61 @@
+:host {
+  display: block;
+}
+
+.portal-list-toolbar {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: var(--portal-surface, #fff);
+  border: 1px solid var(--portal-border, #d9e3f0);
+  border-radius: 0.5rem;
+  box-shadow: var(--portal-shadow, 0 0.5rem 1.5rem rgba(20, 45, 84, 0.08));
+}
+
+.portal-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.portal-chip-row .btn {
+  border-radius: 999px;
+}
+
+.portal-service-card {
+  min-height: 12.5rem;
+  border-color: var(--portal-border, #d9e3f0) !important;
+}
+
+.portal-service-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--portal-primary, #075fc7), var(--portal-cyan, #0797c9));
+  opacity: 0;
+  transition: opacity var(--transition-base-timer, 0.15s) ease;
+}
+
+.portal-service-card:hover,
+.portal-service-card:focus-within {
+  border-color: rgba(var(--portal-primary-rgb, 7, 95, 199), 0.35) !important;
+}
+
+.portal-service-card:hover::before,
+.portal-service-card:focus-within::before {
+  opacity: 1;
+}
+
+.portal-service-icon {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: var(--portal-primary, #075fc7);
+  background: rgba(var(--portal-primary-rgb, 7, 95, 199), 0.1);
+}

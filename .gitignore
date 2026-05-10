@@ -1,0 +1,26 @@
+# Dart generated
+.dart_tool/
+.packages
+build/
+pubspec.lock
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build outputs
+*.js.deps
+*.js.map
+*.ddc.js
+*.ddc.js.map
+*.dart.js
+*.dart.js.map
+*.info.json
+
+# Reference files (not part of the project)
+referencias/
