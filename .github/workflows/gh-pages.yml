@@ -1,0 +1,39 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v4
+
+      - name: Setup Dart 🎯
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Install dependencies 📦
+        run: dart pub get
+
+      - name: Build 🏗️
+        run: |
+          dart run build_runner build --release --delete-conflicting-outputs --output web:build
+
+      - name: Fix base href for GitHub Pages 🛠️
+        run: |
+          # Insere a tag <base href="/portal_servicos/"> logo após a tag <head>
+          sed -i 's/<head>/<head>\n  <base href="\/portal_servicos\/">/' build/index.html
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build
+          branch: gh-pages

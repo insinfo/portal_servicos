@@ -1,6 +1,9 @@
 # Portal de Serviços - Protótipo SALI
 
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Acessar%20Protótipo-blue?style=for-the-badge&logo=github)](https://insinfo.github.io/portal_servicos/)
+
 Este é um protótipo funcional do **Portal do Cidadão**, integrado visualmente ao ecossistema SALI (Sistema de Apoio Legislativo e Informatização). O projeto foi desenvolvido para oferecer uma experiência moderna, intuitiva e responsiva para a solicitação e acompanhamento de serviços públicos.
+
 
 ## 🚀 Funcionalidades Implementadas
 
