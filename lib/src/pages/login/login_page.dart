@@ -20,6 +20,6 @@ class LoginPageComponent {
   }
 
   void onLoginGovBr() {
-    window.location.href = '/logingov.html';
+    window.location.href = 'logingov.html';
   }
 }
