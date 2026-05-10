@@ -1,0 +1,85 @@
+<!-- gov.br mockup page -->
+<div class="govbr-mockup-wrapper">
+  <header class="govbr-header">
+    <div class="container-gov d-flex justify-content-between align-items-center py-2">
+      <a href="https://www.gov.br">
+        <img src="https://sso.staging.acesso.gov.br/assets/govbr/img/govbr.png" alt="Logomarca GovBR" height="30" />
+      </a>
+      <div id="acessibilidade-mock" class="d-flex gap-3">
+        <span class="fs-xs"><i class="ph ph-mask-happy me-1"></i>Alto Contraste</span>
+        <span class="fs-xs"><i class="ph ph-hand-heart me-1"></i>VLibras</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container-gov py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-4 d-none d-lg-block text-center">
+        <img src="https://sso.staging.acesso.gov.br/assets/govbr/img/conta_govbr_v2.jpg" alt="Logomarca GovBR"
+          class="img-fluid rounded shadow-sm" />
+      </div>
+      
+      <div class="col-lg-5">
+        <div class="card shadow-sm border-0 p-4">
+          <h5 class="fw-bold mb-4">Identifique-se no gov.br com:</h5>
+          
+          <div class="mb-4">
+            <div class="d-flex align-items-center gap-3 p-3 border rounded cursor-pointer bg-light mb-3">
+              <img src="https://sso.staging.acesso.gov.br/assets/govbr/img/icons/id-card-solid.png" height="24">
+              <span class="fw-semibold">Número do CPF</span>
+            </div>
+            
+            <div class="ps-2">
+              <p class="fs-sm text-muted">Digite seu CPF para <strong>criar</strong> ou <strong>acessar</strong> sua conta gov.br</p>
+              <div class="mb-3">
+                <label class="form-label fs-xs fw-bold text-uppercase opacity-75">CPF</label>
+                <input type="text" class="form-control form-control-lg bg-light" placeholder="000.000.000-00">
+              </div>
+              <button type="button" class="btn btn-primary w-100 py-2 fw-bold" (click)="onContinue()">
+                Continuar
+              </button>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-3 border-top">
+            <label class="fs-xs fw-bold text-muted text-uppercase mb-3 d-block">Outras opções de identificação:</label>
+            
+            <div class="list-group list-group-flush border rounded overflow-hidden">
+              <div class="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3 cursor-pointer" (click)="onContinue()">
+                <img src="https://sso.staging.acesso.gov.br/assets/govbr/img/icons/InternetBanking-green.png" height="20">
+                <div class="flex-fill">
+                  <div class="fw-semibold text-success fs-sm">Login com seu banco</div>
+                  <span class="badge bg-success fs-10px p-1">SUA CONTA SERÁ PRATA</span>
+                </div>
+              </div>
+              
+              <div class="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3 cursor-pointer" (click)="onContinue()">
+                <img src="https://sso.staging.acesso.gov.br/assets/govbr/img/icons/qrcode.png" height="20">
+                <span class="fw-semibold fs-sm">Login com QR code</span>
+              </div>
+              
+              <div class="list-group-item list-group-item-action d-flex align-items-center gap-3 py-3 cursor-pointer" (click)="onContinue()">
+                <img src="https://sso.staging.acesso.gov.br/assets/govbr/img/icons/CD.png" height="20">
+                <span class="fw-semibold fs-sm">Seu certificado digital</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 text-center">
+            <a href="javascript:void(0)" class="text-primary text-decoration-none fs-xs fw-semibold" (click)="onBack()">
+              <i class="ph ph-arrow-left me-1"></i> Voltar para o Portal
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-4 text-center">
+          <a href="#" class="text-muted fs-xs text-decoration-none d-flex align-items-center justify-content-center gap-2 mb-2">
+            <i class="ph ph-question-circle"></i>
+            Está com dúvidas e precisa de ajuda?
+          </a>
+          <a href="#" class="text-muted fs-xs text-decoration-none">Termo de Uso e Aviso de Privacidade</a>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

@@ -8,6 +8,8 @@ import 'package:portal_sali/src/pages/login/login_page.template.dart'
     as login_page;
 import 'package:portal_sali/src/pages/cadastro/cadastro_page.template.dart'
     as cadastro_page;
+import 'package:portal_sali/src/pages/login_govbr/login_govbr_page.template.dart'
+    as login_govbr_page;
 
 // Shell privado (contém sidebar + navbar + router-outlet interno)
 import 'package:portal_sali/src/pages/main_page/main_page.template.dart'
@@ -51,6 +53,11 @@ class PortalRoutes {
   static final cadastro = RouteDefinition(
     routePath: PortalRoutePaths.cadastro,
     component: cadastro_page.CadastroPageComponentNgFactory,
+  );
+  
+  static final loginGovBr = RouteDefinition(
+    routePath: PortalRoutePaths.loginGovBr,
+    component: login_govbr_page.LoginGovbrPageComponentNgFactory,
   );
 
   static final restrito = RouteDefinition(
@@ -105,6 +112,7 @@ class PortalRoutes {
   static final allPublic = <RouteDefinition>[
     bemVindo,
     login,
+    loginGovBr,
     cadastro,
     restrito,
   ];

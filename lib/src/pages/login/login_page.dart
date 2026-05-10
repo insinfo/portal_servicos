@@ -2,7 +2,7 @@ import 'package:ngdart/angular.dart';
 import 'package:ngrouter/ngrouter.dart';
 import 'package:ngforms/ngforms.dart';
 import '../../shared/routes/route_paths.dart';
-import 'dart:html';
+
 
 @Component(
   selector: 'login-page',
@@ -20,6 +20,6 @@ class LoginPageComponent {
   }
 
   void onLoginGovBr() {
-    window.location.href = 'logingov.html';
+    _router.navigate(PortalRoutePaths.loginGovBr.toUrl());
   }
 }

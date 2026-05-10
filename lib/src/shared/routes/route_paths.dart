@@ -4,6 +4,7 @@ class PortalRoutePaths {
   /// ---------------- páginas públicas ----------------
   static final bemVindo = RoutePath(path: 'bem-vindo');
   static final login = RoutePath(path: 'login');
+  static final loginGovBr = RoutePath(path: 'login-govbr');
   static final cadastro = RoutePath(path: 'cadastro');
 
   /// ---------------- shell restrito ----------------
