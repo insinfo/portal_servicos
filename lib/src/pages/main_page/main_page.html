@@ -58,7 +58,7 @@
                     <a [routerLink]="PortalRoutePaths.servicos.toUrl()" class="dropdown-item rounded"
                       [class.active]="currentPage == 'servicos'" (click)="setCurrentPage('servicos')" liDropdownItem>
                       <i class="ph-squares-four me-2"></i>
-                      Serviços
+                      Serviços/Processo
                     </a>
                   </div>
 
@@ -170,7 +170,7 @@
                   </a>
                 </li>
                 <li *ngIf="currentPage == 'novo-pedido' && currentServiceTitle != null" class="breadcrumb-item">
-                  <a [routerLink]="PortalRoutePaths.servicos.toUrl()">Serviços</a>
+                  <a [routerLink]="PortalRoutePaths.servicos.toUrl()">Serviços/Processo</a>
                 </li>
                 <li *ngIf="currentPage != 'home' && (currentPage != 'novo-pedido' || currentServiceTitle == null)"
                     class="breadcrumb-item active" aria-current="page">

@@ -1,119 +1,61 @@
 :host {
   display: block;
-  min-height: 100vh;
 }
 
-.process-page {
-  min-height: 100vh;
-  background:
-    linear-gradient(180deg, rgba(7, 95, 199, 0.08), transparent 17rem),
-    var(--body-bg, #edf3fa);
-  color: var(--body-color, #162033);
+.portal-welcome {
+  isolation: isolate;
+  background-image: url('assets/videos/ro_poster.jpg');
+  background-size: cover;
+  background-position: center;
 }
 
-.process-header {
-  min-height: 3.9rem;
-  display: flex;
-  align-items: center;
-  padding: 0.75rem 1.25rem;
-  background: #252b36;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+.bg-overlay {
+  background: linear-gradient(180deg, rgba(3, 31, 76, 0.55) 0%, rgba(5, 71, 151, 0.78) 52%, rgba(2, 39, 92, 0.92) 100%);
+  z-index: 1;
 }
 
-.process-brand {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  min-width: 0;
+.scroll-container {
+  z-index: 2;
 }
 
-.sali-logo {
-  background: linear-gradient(135deg, #8a2be2 0%, #f05ba8 55%, #3aa7ff 100%);
-  background-clip: text;
-  color: transparent;
-  font-size: 1.45rem;
-  font-weight: 900;
-  letter-spacing: -0.06em;
-  line-height: 1;
+.letter-spacing-sm {
+  letter-spacing: 0.1em;
 }
 
-.process-title {
-  color: #fff;
-  font-size: 1.12rem;
-  font-weight: 700;
-  line-height: 1.2;
+.max-w-500 {
+  max-width: 500px;
 }
 
-.process-content {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: calc(100vh - 3.9rem);
-  padding: 1.25rem;
+/* Fix for Limitless select with feedback icon */
+.form-control-feedback-start .form-select {
+  padding-left: 3rem;
 }
 
-.process-card {
-  width: min(100%, 25.25rem);
-  margin-top: 0;
-  border-color: var(--portal-border, #d9e3f0);
-  border-radius: 0.5rem;
-  box-shadow: var(--portal-shadow-lg, 0 1rem 2rem rgba(20, 45, 84, 0.12));
-  overflow: hidden;
+.hover-opacity-100:hover {
+  opacity: 1 !important;
 }
 
-.card-header,
-.card-body {
-  padding: 1.25rem;
+.transition-all {
+  transition: all 0.2s ease;
 }
 
-.card-title {
-  font-size: 1.1rem;
-  font-weight: 700;
+.animation-fade-in {
+  animation: fadeIn 0.3s ease-out;
 }
 
-.process-form {
-  display: grid;
-  gap: 1rem;
+.w-64px { width: 64px; }
+.h-64px { height: 64px; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.form-control,
-.form-select {
-  min-height: 2.5rem;
-}
-
-.form-control[readonly] {
-  background-color: var(--portal-surface-soft, #f8fbff);
-}
-
-.process-helper {
-  max-width: 19rem;
-  margin: 1.25rem auto 0;
-  text-align: center;
-  font-size: 0.9rem;
-  line-height: 1.45;
-}
-
-@media (min-width: 768px) {
-  .process-content {
-    padding-top: 1.25rem;
-  }
-}
-
-@media (max-width: 575.98px) {
-  .process-header {
-    padding-inline: 1rem;
-  }
-
-  .process-title {
-    font-size: 1rem;
-  }
-
-  .process-content {
-    padding: 1rem;
-  }
-
-  .card-header,
+@media (max-width: 576px) {
   .card-body {
-    padding: 1rem;
+    padding: 1.5rem !important;
   }
 }
+
+
+

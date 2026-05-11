@@ -8,7 +8,7 @@ import '../../shared/routes/route_paths.dart';
   selector: 'consulta-processos-page',
   templateUrl: 'consulta_processos_page.html',
   styleUrls: ['consulta_processos_page.css'],
-  directives: [coreDirectives, formDirectives],
+  directives: [coreDirectives, formDirectives, routerDirectives],
   exports: [PortalRoutePaths],
 )
 class ConsultaProcessosPageComponent implements OnActivate {

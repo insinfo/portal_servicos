@@ -9,7 +9,7 @@ import '../../shared/routes/route_paths.dart';
   selector: 'bem-vindo-page',
   templateUrl: 'bem_vindo_page.html',
   styleUrls: ['bem_vindo_page.css'],
-  directives: [coreDirectives],
+  directives: [coreDirectives, RouterLink],
   exports: [PortalRoutePaths],
 )
 class BemVindoPageComponent implements AfterViewInit {

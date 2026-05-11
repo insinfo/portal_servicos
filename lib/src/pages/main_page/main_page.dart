@@ -57,7 +57,7 @@ class MainPageComponent implements CanReuse, OnInit, OnDestroy {
     ),
     SidebarNavItem(
       id: 'servicos',
-      label: 'Serviços',
+      label: 'Serviços/Processo',
       iconClass: 'ph-squares-four',
       routePath: PortalRoutePaths.servicos.toUrl(),
     ),

@@ -56,19 +56,6 @@
   text-shadow: 0 4px 18px rgba(0, 0, 0, 0.34);
 }
 
-.portal-feature {
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 8px;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 16px 40px rgba(4, 35, 83, 0.14);
-  backdrop-filter: blur(8px);
-}
-
-.portal-feature i {
-  color: #bfe8ff;
-}
-
 .btn-login {
   border-radius: 6px;
   font-size: 1.1rem;
@@ -83,16 +70,80 @@
   box-shadow: 0 1rem 2rem rgba(3, 35, 84, 0.28) !important;
 }
 
-@media (max-width: 767.98px) {
-  .portal-feature-grid {
-    max-width: 420px;
-  }
+.portal-action-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
 
+.portal-action-card {
+  min-height: 104px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  color: #fff;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 14px 34px rgba(3, 35, 84, 0.18);
+  backdrop-filter: blur(8px);
+  transition: transform 0.16s ease, background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.portal-action-card i {
+  color: #bfe8ff;
+  font-size: 1.5rem;
+  flex: 0 0 auto;
+}
+
+.portal-action-card span {
+  display: block;
+}
+
+.portal-action-card strong {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.portal-action-card small {
+  display: block;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.portal-action-card:hover,
+.portal-action-card:focus {
+  color: #fff;
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 18px 38px rgba(3, 35, 84, 0.24);
+}
+
+@media (max-width: 767.98px) {
   .portal-heading h1 {
     font-size: 2.35rem;
   }
 
   .logo-brasao {
     height: 56px;
+  }
+
+  .portal-action-grid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .portal-action-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

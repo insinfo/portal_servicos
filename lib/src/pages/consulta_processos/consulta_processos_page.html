@@ -1,77 +1,124 @@
-<div class="process-page">
-  <header class="process-header">
-    <div class="process-brand">
-      <span class="sali-logo">SALI</span>
-      <span class="process-title">Andamento dos Processos</span>
-      <span class="badge bg-yellow text-black rounded-pill">beta</span>
-    </div>
-  </header>
+<div class="portal-welcome w-100 vh-100 position-relative overflow-hidden bg-vista">
+  <!-- Overlay -->
+  <div class="position-absolute top-0 start-0 w-100 h-100 bg-overlay"></div>
 
-  <main class="process-content">
-    <section class="card process-card">
-      <div class="card-header border-bottom">
-        <h1 class="card-title mb-0">Andamento dos Processos</h1>
+  <!-- Scrollable Content Area -->
+  <div class="position-absolute top-0 start-0 w-100 h-100 overflow-auto d-flex flex-column scroll-container">
+
+    <!-- Top header -->
+    <div class="d-flex justify-content-between align-items-center p-4 w-100 flex-shrink-0">
+      <a [routerLink]="PortalRoutePaths.bemVindo.toUrl()" class="text-white text-decoration-none d-flex align-items-center gap-2 opacity-75 hover-opacity-100 transition-all">
+        <i class="ph-arrow-left fs-base"></i>
+        <span class="fs-sm fw-bold">Voltar</span>
+      </a>
+      
+      <div class="d-flex align-items-center gap-2 opacity-75">
+        <i class="ph-shield-check text-white fs-base"></i>
+        <span class="text-white fs-xs fw-bold text-uppercase letter-spacing-sm">Portal de Serviços</span>
       </div>
+    </div>
 
-      <div class="card-body">
-        <form *ngIf="!resultadoVisivel" (ngSubmit)="consultar()" class="process-form">
-          <div>
-            <label for="processo" class="form-label">Processo:</label>
-            <input
-              id="processo"
-              name="processo"
-              type="text"
-              class="form-control"
-              placeholder="Nº do processo"
-              [(ngModel)]="processo">
+    <!-- Main content centered -->
+    <div class="flex-fill d-flex flex-column align-items-center justify-content-center px-4 w-100 py-5">
+      
+      <div class="consult-container w-100 max-w-500">
+        <!-- Limitless Style Card -->
+        <div class="card shadow-lg border-0 rounded-3">
+          <div class="card-header bg-light border-bottom text-center py-4">
+            <div class="bg-primary bg-opacity-10 text-primary rounded-pill d-inline-flex align-items-center justify-content-center w-64px h-64px mb-3">
+              <i class="ph-magnifying-glass fs-1"></i>
+            </div>
+            <h2 class="card-title h4 fw-bold mb-1">Consulta de Processo</h2>
+            <p class="text-muted fs-sm mb-0">Acompanhe o andamento da sua solicitação</p>
           </div>
 
-          <div>
-            <label for="exercicio" class="form-label">Exercício:</label>
-            <select
-              id="exercicio"
-              name="exercicio"
-              class="form-select"
-              [(ngModel)]="exercicio">
-              <option *ngFor="let ano of exercicios" [value]="ano">{{ ano }}</option>
-            </select>
+          <div class="card-body p-4">
+            <form *ngIf="!resultadoVisivel" (ngSubmit)="consultar()" class="row g-3">
+              <div class="col-12">
+                <label for="processo" class="form-label fw-semibold">Nº do Processo</label>
+                <div class="form-control-feedback form-control-feedback-start">
+                  <input
+                    id="processo"
+                    name="processo"
+                    type="text"
+                    class="form-control"
+                    placeholder="Ex: 12345"
+                    [(ngModel)]="processo">
+                  <div class="form-control-feedback-icon">
+                    <i class="ph-hash opacity-50"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="exercicio" class="form-label fw-semibold">Exercício</label>
+                <div class="form-control-feedback form-control-feedback-start">
+                  <select
+                    id="exercicio"
+                    name="exercicio"
+                    class="form-select"
+                    [(ngModel)]="exercicio">
+                    <option *ngFor="let ano of exercicios" [value]="ano">{{ ano }}</option>
+                  </select>
+                  <div class="form-control-feedback-icon">
+                    <i class="ph-calendar opacity-50"></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 mt-4">
+                <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">
+                  <i class="ph-magnifying-glass me-2"></i> Consultar Processo
+                </button>
+              </div>
+            </form>
+
+            <div *ngIf="resultadoVisivel" class="consult-result animation-fade-in">
+              <div class="list-group list-group-flush border-top">
+                <div class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <span class="text-muted">Processo</span>
+                  <span class="fw-bold">{{ processoFormatado }}</span>
+                </div>
+
+                <div class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <span class="text-muted">Último trâmite</span>
+                  <span class="fw-bold text-end ms-3">{{ ultimoTramite }}</span>
+                </div>
+
+                <div class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <span class="text-muted">Data</span>
+                  <span class="fw-bold">{{ dataUltimoTramite }}</span>
+                </div>
+
+                <div class="list-group-item d-flex justify-content-between align-items-center py-3">
+                  <span class="text-muted">Situação</span>
+                  <span class="badge bg-success-100 text-success rounded-pill fw-bold">{{ situacao }}</span>
+                </div>
+              </div>
+
+              <div class="text-center mt-4">
+                <button type="button" class="btn btn-light w-100 border" (click)="novaConsulta()">
+                  <i class="ph-arrow-counter-clockwise me-2"></i> Nova Consulta
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary">Consultar</button>
-          </div>
-        </form>
-
-        <div *ngIf="resultadoVisivel" class="process-form">
-          <div>
-            <label class="form-label">Processo:</label>
-            <input type="text" class="form-control" [value]="processoFormatado" readonly>
-          </div>
-
-          <div>
-            <label class="form-label">Último trâmite:</label>
-            <input type="text" class="form-control" [value]="ultimoTramite" readonly>
-          </div>
-
-          <div>
-            <label class="form-label">Data último trâmite:</label>
-            <input type="text" class="form-control" [value]="dataUltimoTramite" readonly>
-          </div>
-
-          <div>
-            <label class="form-label">Situação:</label>
-            <input type="text" class="form-control" [value]="situacao" readonly>
-          </div>
-
-          <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-primary" (click)="novaConsulta()">Nova Consulta</button>
+          <div class="card-footer bg-light border-top text-center py-3">
+            <p class="fs-xs text-muted mb-0">
+              As informações são providas pelo Protocolo Geral.
+            </p>
           </div>
         </div>
-
-        <p class="process-helper text-muted mb-0">
-          As informações sobre processos são providas pelo Protocolo Geral
-        </p>
       </div>
-    </section>
-  </main>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="w-100 p-4 pb-3 flex-shrink-0 d-flex flex-column flex-md-row justify-content-between align-items-center text-white opacity-50 fs-xs text-center text-md-start gap-2">
+      <span>© 2026 Prefeitura Municipal de Rio das Ostras</span>
+      <span>SALI - Sistema de Processos Administrativos</span>
+    </div>
+
+  </div>
 </div>
