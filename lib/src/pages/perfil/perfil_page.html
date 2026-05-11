@@ -54,15 +54,15 @@
         <div class="row g-3">
           <div class="col-12">
             <label class="form-label fw-semibold fs-sm">Nome completo</label>
-            <input type="text" class="form-control" [(ngModel)]="nome" [readonly]="!isEditing">
+            <input type="text" class="form-control" [(ngModel)]="nome" disabled>
           </div>
           <div class="col-md-6">
             <label class="form-label fw-semibold fs-sm">CPF</label>
-            <input type="text" class="form-control" [value]="cpf" readonly>
+            <input type="text" class="form-control" [value]="cpf" disabled>
           </div>
           <div class="col-md-6">
             <label class="form-label fw-semibold fs-sm">Data de nascimento</label>
-            <input type="text" class="form-control" [(ngModel)]="dataNascimento" [readonly]="!isEditing">
+            <input type="text" class="form-control" [(ngModel)]="dataNascimento" disabled>
           </div>
           <div class="col-md-6">
             <label class="form-label fw-semibold fs-sm">E-mail</label>

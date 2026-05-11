@@ -16,7 +16,7 @@ class HomePageComponent {
   HomePageComponent(this._router);
 
   void irParaNovoPedido() {
-    _router.navigate(PortalRoutePaths.novoPedido.toUrl());
+    _router.navigate(PortalRoutePaths.servicos.toUrl());
   }
 
   void irParaMeusPedidos() {

@@ -4,58 +4,45 @@ import 'package:ngrouter/ngrouter.dart';
 
 import '../../shared/routes/route_paths.dart';
 
+import '../../shared/models/servico_item.dart';
+import '../servicos/servicos_page.dart' show IconMaskDirective;
+
 @Component(
   selector: 'novo-pedido-page',
   templateUrl: 'novo_pedido_page.html',
   styleUrls: ['novo_pedido_page.css'],
-  directives: [coreDirectives, formDirectives],
+  directives: [coreDirectives, formDirectives, IconMaskDirective],
   exports: [PortalRoutePaths],
 )
-class NovoPedidoPageComponent {
+class NovoPedidoPageComponent implements OnActivate {
   final Router _router;
 
   NovoPedidoPageComponent(this._router);
 
-  int currentStep = 0;
+  ServicoItem? servicoSelecionado;
 
-  // Step 1 – Serviço
-  String servicoSelecionado = 'Coleta de Galhada';
+  ServicoItem get servico => servicoSelecionado!;
 
-  // Step 2 – Endereço
-  String cep = '';
-  String logradouro = '';
-  String numero = '';
-  String complemento = '';
-  String bairro = '';
+  // Formulário
+  String endereco = '';
   String referencia = '';
-
-  // Step 3 – Detalhes
   String descricaoProblema = '';
-  String urgencia = 'normal';
+
+  @override
+  void onActivate(RouterState? previous, RouterState current) {
+    final tituloParam = current.queryParameters['servico'];
+    if (tituloParam != null && tituloParam.isNotEmpty) {
+      try {
+        servicoSelecionado = catalogoServicos.firstWhere(
+            (s) => s.titulo == tituloParam);
+      } catch (e) {
+        // Se não encontrar, pode voltar para lista ou usar um default
+      }
+    }
+  }
 
   bool get canAdvance {
-    switch (currentStep) {
-      case 0:
-        return servicoSelecionado.isNotEmpty;
-      case 1:
-        return logradouro.isNotEmpty && numero.isNotEmpty && bairro.isNotEmpty;
-      case 2:
-        return descricaoProblema.trim().isNotEmpty;
-      default:
-        return false;
-    }
-  }
-
-  void nextStep() {
-    if (currentStep < 2 && canAdvance) {
-      currentStep++;
-    }
-  }
-
-  void prevStep() {
-    if (currentStep > 0) {
-      currentStep--;
-    }
+    return endereco.trim().isNotEmpty && descricaoProblema.trim().isNotEmpty;
   }
 
   void enviarPedido() {
@@ -66,3 +53,4 @@ class NovoPedidoPageComponent {
     _router.navigate(PortalRoutePaths.servicos.toUrl());
   }
 }
+

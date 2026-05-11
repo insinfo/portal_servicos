@@ -9,11 +9,11 @@
   --portal-ink: #162033;
   --portal-muted: #65748a;
   --portal-surface: #ffffff;
-  --portal-surface-soft: #f8fbff;
-  --portal-border: #d9e3f0;
-  --portal-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-  --portal-shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.06);
-  --body-bg: #f5f8fc;
+  --portal-surface-soft: #f4f7fb;
+  --portal-border: #d4dfec;
+  --portal-shadow: 0 1px 3px rgba(20, 45, 84, 0.04);
+  --portal-shadow-lg: 0 3px 8px rgba(20, 45, 84, 0.06);
+  --body-bg: #f4f7fb;
   --component-active-bg: var(--portal-primary);
   --component-active-bg-rgb: var(--portal-primary-rgb);
   --link-color: var(--portal-primary);
@@ -48,7 +48,12 @@ body {
 }
 
 .portal-shell {
-  background-color: var(--body-bg);
+  background-color: var(--portal-surface-soft);
+}
+
+.portal-shell .content-wrapper,
+.portal-shell .content-inner {
+  background-color: var(--portal-surface-soft);
 }
 
 .portal-shell .content {
@@ -85,7 +90,16 @@ body {
   --card-border-color: var(--portal-border);
   --card-border-radius: 0.5rem;
   --card-box-shadow: var(--portal-shadow);
+  background-color: var(--portal-surface) !important;
+  border: 1px solid var(--portal-border) !important;
+  box-shadow: var(--portal-shadow) !important;
   overflow: hidden;
+}
+
+.portal-shell .card.shadow-none,
+.portal-shell .card.border-transparent {
+  border-color: var(--portal-border) !important;
+  box-shadow: var(--portal-shadow) !important;
 }
 
 .portal-shell .card-header,

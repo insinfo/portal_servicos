@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:ngdart/angular.dart';
 import 'package:ngrouter/ngrouter.dart';
 
@@ -33,13 +35,13 @@ class MeusPedidosPageComponent {
 
   MeusPedidosPageComponent(this._router);
 
-  final List<PedidoItem> pedidos = const <PedidoItem>[
+  static const List<PedidoItem> _pedidosBase = <PedidoItem>[
     PedidoItem(
       protocolo: '2026.05.0001234',
       servico: 'Coleta de Galhada',
       data: '09/05/2026',
       status: 'Em análise',
-      statusClass: 'bg-warning bg-opacity-10 text-warning',
+      statusClass: 'badge bg-warning bg-opacity-10 text-warning fs-sm',
       iconClass: 'ph ph-tree',
     ),
     PedidoItem(
@@ -47,7 +49,7 @@ class MeusPedidosPageComponent {
       servico: 'Tapa-Buraco',
       data: '28/04/2026',
       status: 'Em execução',
-      statusClass: 'bg-info bg-opacity-10 text-info',
+      statusClass: 'badge bg-info bg-opacity-10 text-info fs-sm',
       iconClass: 'ph ph-road-horizon',
     ),
     PedidoItem(
@@ -55,7 +57,7 @@ class MeusPedidosPageComponent {
       servico: 'Iluminação Pública',
       data: '15/04/2026',
       status: 'Concluído',
-      statusClass: 'bg-success bg-opacity-10 text-success',
+      statusClass: 'badge bg-success bg-opacity-10 text-success fs-sm',
       iconClass: 'ph ph-lightbulb',
     ),
     PedidoItem(
@@ -63,7 +65,7 @@ class MeusPedidosPageComponent {
       servico: 'Poda de Árvore',
       data: '22/03/2026',
       status: 'Concluído',
-      statusClass: 'bg-success bg-opacity-10 text-success',
+      statusClass: 'badge bg-success bg-opacity-10 text-success fs-sm',
       iconClass: 'ph ph-plant',
     ),
     PedidoItem(
@@ -71,10 +73,45 @@ class MeusPedidosPageComponent {
       servico: 'Coleta de Inservíveis',
       data: '10/03/2026',
       status: 'Cancelado',
-      statusClass: 'bg-secondary bg-opacity-10 text-secondary',
+      statusClass: 'badge bg-secondary bg-opacity-10 text-secondary fs-sm',
       iconClass: 'ph ph-trash',
     ),
   ];
+
+  final List<PedidoItem> pedidos = _pedidosBase;
+
+  String filtro = '';
+  String statusFiltro = '';
+  List<PedidoItem> pedidosFiltrados = _pedidosBase;
+
+  int get totalPedidos => pedidosFiltrados.length;
+  int get paginaAtual => 1;
+  int get totalPaginas => 1;
+
+  void _aplicarFiltros() {
+    final query = filtro.trim().toLowerCase();
+    pedidosFiltrados = pedidos.where((pedido) {
+      final combinaTexto = query.isEmpty ||
+          pedido.servico.toLowerCase().contains(query) ||
+          pedido.protocolo.toLowerCase().contains(query) ||
+          pedido.data.toLowerCase().contains(query);
+      final combinaStatus =
+          statusFiltro.isEmpty || pedido.status == statusFiltro;
+      return combinaTexto && combinaStatus;
+    }).toList();
+  }
+
+  void onFiltroInput(Event event) {
+    final input = event.target as InputElement;
+    filtro = input.value ?? '';
+    _aplicarFiltros();
+  }
+
+  void onStatusFiltroChange(Event event) {
+    final select = event.target as SelectElement;
+    statusFiltro = select.value ?? '';
+    _aplicarFiltros();
+  }
 
   void verDetalhes(PedidoItem pedido) {
     _router.navigate(PortalRoutePaths.confirmacao.toUrl());

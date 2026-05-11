@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:html';
 import 'package:ngdart/angular.dart';
 import 'package:ngrouter/ngrouter.dart';
@@ -27,7 +28,7 @@ import 'package:limitless_ui/limitless_ui.dart';
   ],
   exports: [PortalRoutePaths, PortalRoutes],
 )
-class MainPageComponent implements CanReuse {
+class MainPageComponent implements CanReuse, OnInit, OnDestroy {
   final Router _router;
 
   MainPageComponent(this._router);
@@ -35,8 +36,11 @@ class MainPageComponent implements CanReuse {
   bool isMobileSidebarOpen = false;
   String userName = 'Isaque Sant\'Ana';
 
-  /// Página ativa para highlight do sidebar.
+  /// Página ativa para highlight do sidebar e breadcrumb.
   String currentPage = 'home';
+  String? currentServiceTitle;
+
+  StreamSubscription<RouterState>? _routeSub;
 
   final List<SidebarNavItem> navItems = <SidebarNavItem>[
     SidebarNavItem(
@@ -50,12 +54,6 @@ class MainPageComponent implements CanReuse {
       label: 'Minhas solicitações',
       iconClass: 'ph-clipboard-text',
       routePath: PortalRoutePaths.meusPedidos.toUrl(),
-    ),
-    SidebarNavItem(
-      id: 'novo-pedido',
-      label: 'Nova solicitação',
-      iconClass: 'ph-plus-circle',
-      routePath: PortalRoutePaths.novoPedido.toUrl(),
     ),
     SidebarNavItem(
       id: 'servicos',
@@ -89,6 +87,9 @@ class MainPageComponent implements CanReuse {
     for (final item in navItems) {
       if (item.id == currentPage) return item.label;
     }
+    if (currentPage == 'novo-pedido') return 'Novo pedido';
+    if (currentPage == 'confirmacao') return 'Confirmação';
+    if (currentPage == 'notificacoes') return 'Notificações';
     return 'Início';
   }
 
@@ -107,6 +108,7 @@ class MainPageComponent implements CanReuse {
 
   void setCurrentPage(String page) {
     currentPage = page;
+    currentServiceTitle = null;
     closeMobileSidebar();
   }
 
@@ -134,6 +136,31 @@ class MainPageComponent implements CanReuse {
   @override
   Future<bool> canReuse(RouterState current, RouterState next) async {
     return true;
+  }
+
+  @override
+  void ngOnInit() {
+    _routeSub = _router.onRouteActivated.listen((RouterState state) {
+      final path = state.routePath.path;
+      currentServiceTitle = state.queryParameters['servico'];
+      // Procura o item de navegação que corresponde ao path da rota ativa
+      for (final item in navItems) {
+        if (item.id == path) {
+          currentPage = item.id;
+          return;
+        }
+      }
+      if (path == 'novo-pedido' ||
+          path == 'confirmacao' ||
+          path == 'notificacoes') {
+        currentPage = path;
+      }
+    });
+  }
+
+  @override
+  void ngOnDestroy() {
+    _routeSub?.cancel();
   }
 }
 

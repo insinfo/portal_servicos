@@ -1,11 +1,5 @@
-
-<div class="mb-4">
-  <h2 class="fw-bold mb-1">Serviços disponíveis</h2>
-  <p class="text-muted mb-0">Escolha o serviço que deseja solicitar.</p>
-</div>
-
 <!-- Search and Filter bar -->
-<div class="row g-3 mb-4">
+<div class="row g-3 mb-2">
   <div class="col-lg-8">
     <div class="form-control-feedback form-control-feedback-start">
       <input type="search" class="form-control bg-white" placeholder="Buscar serviço..."
@@ -39,14 +33,40 @@
       </div>
       
       <h6 class="mb-2 fw-bold text-body fs-base">{{ servico.titulo }}</h6>
-      <p class="fs-sm text-muted mb-4 flex-fill">{{ servico.descricao }}</p>
+      <p class="fs-sm text-muted mb-2 flex-fill">{{ servico.descricao }}</p>
       
       <div class="d-flex align-items-center justify-content-between mt-auto pt-2 border-top-0">
-        <span class="fs-xs fw-semibold px-2 py-1 rounded-pill {{ servico.badgeColorClass }} {{ servico.badgeBgClass }} bg-opacity-10">
+        <span class="badge fs-sm {{ servico.badgeColorClass }} {{ servico.badgeBgClass }} bg-opacity-10">
           {{ servico.categoria }}
         </span>
         <i class="ph-arrow-right text-primary fw-bold fs-5"></i>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Pagination -->
+<div *ngIf="servicosFiltrados.length != 0" class="card card-body mt-2 mb-0">
+  <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2">
+    <span class="text-muted fs-sm me-sm-auto">
+      Mostrando {{ totalServicosFiltrados }} de {{ totalServicosFiltrados }} serviços
+    </span>
+
+    <div class="d-flex align-items-center justify-content-between justify-content-sm-end gap-3">
+      <span class="text-muted fs-sm text-nowrap">{{ paginaAtual }} de {{ totalPaginas }}</span>
+
+      <ul class="pagination pagination-flat mb-0">
+        <li class="page-item disabled">
+          <button type="button" class="page-link rounded-pill px-0" aria-label="Página anterior" disabled>
+            <i class="ph ph-caret-left"></i>
+          </button>
+        </li>
+        <li class="page-item ms-1 disabled">
+          <button type="button" class="page-link rounded-pill px-0" aria-label="Próxima página" disabled>
+            <i class="ph ph-caret-right"></i>
+          </button>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

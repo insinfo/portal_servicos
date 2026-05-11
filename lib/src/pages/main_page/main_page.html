@@ -55,12 +55,6 @@
                       <i class="ph-clipboard-text me-2"></i>
                       Minhas solicitações
                     </a>
-                    <a [routerLink]="PortalRoutePaths.novoPedido.toUrl()" class="dropdown-item rounded"
-                      [class.active]="currentPage == 'novo-pedido'" (click)="setCurrentPage('novo-pedido')"
-                      liDropdownItem>
-                      <i class="ph-plus-circle me-2"></i>
-                      Nova solicitação
-                    </a>
                     <a [routerLink]="PortalRoutePaths.servicos.toUrl()" class="dropdown-item rounded"
                       [class.active]="currentPage == 'servicos'" (click)="setCurrentPage('servicos')" liDropdownItem>
                       <i class="ph-squares-four me-2"></i>
@@ -97,7 +91,7 @@
 </div>
 
 <!-- Page content -->
-<div class="page-content portal-shell" [class.bg-light]="isLayout6">
+<div class="page-content portal-shell">
 
   <!-- Main sidebar (Layout 1 only) -->
   <div *ngIf="!isLayout6" class="sidebar sidebar-dark sidebar-main sidebar-expand-lg h-100"
@@ -151,8 +145,8 @@
   <div class="content-wrapper">
     <div class="content-inner">
       <!-- Top navbar for Layout 1 (inside content area) -->
-      <div *ngIf="!isLayout6" class="navbar navbar-light navbar-expand-lg border-bottom px-3">
-        <div class="container-fluid px-0">
+      <div *ngIf="!isLayout6" class="navbar navbar-light border-bottom portal-topbar px-0">
+        <div class="container-fluid portal-topbar-grid px-3">
           <div class="d-flex d-lg-none me-2">
             <button type="button" class="navbar-toggler sidebar-mobile-main-toggle rounded-pill"
               (click)="toggleMobileSidebar()">
@@ -160,17 +154,37 @@
             </button>
           </div>
 
-          <nav class="breadcrumb py-2 mb-0 d-none d-sm-flex" aria-label="Breadcrumb">
-            <a class="breadcrumb-item" [routerLink]="PortalRoutePaths.home.toUrl()" aria-label="Início">
-              <i class="ph-house"></i>
-            </a>
-            <span *ngIf="currentPage == 'home'" class="breadcrumb-item active">Início</span>
-            <a *ngIf="currentPage != 'home'" class="breadcrumb-item text-muted"
-              [routerLink]="PortalRoutePaths.home.toUrl()">Início</a>
-            <span *ngIf="currentPage != 'home'" class="breadcrumb-item active">{{currentPageLabel}}</span>
-          </nav>
+          <div class="portal-page-heading">
+            <h3 class="fw-bold text-body mb-2">
+              {{ currentPage == 'home' ? 'Bem-vindo, Isaque' : currentPageLabel }}
+            </h3>
+            <p *ngIf="currentPage == 'home'" class="text-muted mb-0">
+              Acompanhe suas solicitações e acesse os serviços disponíveis.
+            </p>
+            <nav *ngIf="currentPage != 'home'" aria-label="breadcrumb">
+              <ol class="breadcrumb fs-sm">
+                <li class="breadcrumb-item">
+                  <a [routerLink]="PortalRoutePaths.home.toUrl()">
+                    <i class="ph-house me-1"></i>
+                    Início
+                  </a>
+                </li>
+                <li *ngIf="currentPage == 'novo-pedido' && currentServiceTitle != null" class="breadcrumb-item">
+                  <a [routerLink]="PortalRoutePaths.servicos.toUrl()">Serviços</a>
+                </li>
+                <li *ngIf="currentPage != 'home' && (currentPage != 'novo-pedido' || currentServiceTitle == null)"
+                    class="breadcrumb-item active" aria-current="page">
+                  {{ currentPageLabel }}
+                </li>
+                <li *ngIf="currentPage == 'novo-pedido' && currentServiceTitle != null"
+                    class="breadcrumb-item active" aria-current="page">
+                  {{ currentServiceTitle }}
+                </li>
+              </ol>
+            </nav>
+          </div>
 
-          <div class="ms-auto d-flex align-items-center">
+          <div class="portal-topbar-actions d-flex align-items-center">
             <a [routerLink]="PortalRoutePaths.ajuda.toUrl()"
               class="d-none d-md-flex align-items-center text-body me-3 fs-sm fw-semibold">
               <i class="ph-lifebuoy me-2"></i>
@@ -204,13 +218,17 @@
         </div>
       </div>
 
-      <div class="content" [class.container]="isLayout6" [class.pt-0]="isLayout6">
+      <div class="content portal-route-content" [class.container]="isLayout6">
         <router-outlet [routes]="PortalRoutes.allPrivate"></router-outlet>
       </div>
 
       <div class="navbar navbar-sm navbar-footer border-top">
         <div class="container-fluid">
-          <span>© 2026 <a href="https://www.riodasostras.rj.gov.br">Prefeitura Municipal de Rio das Ostras</a></span>
+          <span>
+            © 2026
+            <a href="https://www.riodasostras.rj.gov.br" class="d-none d-sm-inline">Prefeitura Municipal de Rio das Ostras</a>
+            <a href="https://www.riodasostras.rj.gov.br" class="d-inline d-sm-none">PMRO</a>
+          </span>
           <ul class="nav">
             <li class="nav-item">
               <a [routerLink]="'ajuda'" class="navbar-nav-link navbar-nav-link-icon rounded">

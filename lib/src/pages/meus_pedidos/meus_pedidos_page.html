@@ -1,71 +1,126 @@
 
 <!-- Stats -->
-<div class="row g-3 mb-4">
+<div class="row g-3 mb-2">
   <div class="col-6 col-lg-3">
-    <div class="card card-body p-3 d-flex flex-row align-items-center gap-3 shadow-none border">
-      <div class="bg-primary bg-opacity-10 text-primary rounded-pill d-flex align-items-center justify-content-center flex-shrink-0" style="width: 42px; height: 42px;">
+    <div class="card card-body p-3 d-flex flex-row align-items-center gap-3 portal-stat-card">
+      <div class="bg-primary bg-opacity-10 text-primary rounded-pill d-flex align-items-center justify-content-center flex-shrink-0 portal-stat-icon">
         <i class="ph ph-clipboard-text fs-lg"></i>
       </div>
       <div>
         <h4 class="fw-bold mb-0">5</h4>
-        <div class="text-muted fs-xs">Total</div>
+        <div class="text-muted fs-sm">Total</div>
       </div>
     </div>
   </div>
   <div class="col-6 col-lg-3">
-    <div class="card card-body p-3 d-flex flex-row align-items-center gap-3 shadow-none border">
-      <div class="bg-warning bg-opacity-10 text-warning rounded-pill d-flex align-items-center justify-content-center flex-shrink-0" style="width: 42px; height: 42px;">
+    <div class="card card-body p-3 d-flex flex-row align-items-center gap-3 portal-stat-card">
+      <div class="bg-warning bg-opacity-10 text-warning rounded-pill d-flex align-items-center justify-content-center flex-shrink-0 portal-stat-icon">
         <i class="ph ph-magnifying-glass fs-lg"></i>
       </div>
       <div>
         <h4 class="fw-bold mb-0">1</h4>
-        <div class="text-muted fs-xs">Em análise</div>
+        <div class="text-muted fs-sm">Em análise</div>
       </div>
     </div>
   </div>
   <div class="col-6 col-lg-3">
-    <div class="card card-body p-3 d-flex flex-row align-items-center gap-3 shadow-none border">
-      <div class="bg-info bg-opacity-10 text-info rounded-pill d-flex align-items-center justify-content-center flex-shrink-0" style="width: 42px; height: 42px;">
+    <div class="card card-body p-3 d-flex flex-row align-items-center gap-3 portal-stat-card">
+      <div class="bg-info bg-opacity-10 text-info rounded-pill d-flex align-items-center justify-content-center flex-shrink-0 portal-stat-icon">
         <i class="ph ph-truck fs-lg"></i>
       </div>
       <div>
         <h4 class="fw-bold mb-0">1</h4>
-        <div class="text-muted fs-xs text-nowrap">Em execução</div>
+        <div class="text-muted fs-sm text-nowrap">Em execução</div>
       </div>
     </div>
   </div>
   <div class="col-6 col-lg-3">
-    <div class="card card-body p-3 d-flex flex-row align-items-center gap-3 shadow-none border">
-      <div class="bg-success bg-opacity-10 text-success rounded-pill d-flex align-items-center justify-content-center flex-shrink-0" style="width: 42px; height: 42px;">
+    <div class="card card-body p-3 d-flex flex-row align-items-center gap-3 portal-stat-card">
+      <div class="bg-success bg-opacity-10 text-success rounded-pill d-flex align-items-center justify-content-center flex-shrink-0 portal-stat-icon">
         <i class="ph ph-check-circle fs-lg"></i>
       </div>
       <div>
         <h4 class="fw-bold mb-0">2</h4>
-        <div class="text-muted fs-xs">Concluídos</div>
+        <div class="text-muted fs-sm">Concluídos</div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Search and Filter bar -->
+<div class="card card-body mb-2">
+  <div class="d-sm-flex align-items-sm-start">
+    <div class="form-control-feedback form-control-feedback-start flex-grow-1 mb-2 mb-sm-0">
+      <input type="search" class="form-control bg-white" placeholder="Buscar por serviço, protocolo ou data..."
+             [value]="filtro" (input)="onFiltroInput($event)">
+      <div class="form-control-feedback-icon">
+        <i class="ph ph-magnifying-glass"></i>
+      </div>
+    </div>
+
+    <div class="ms-sm-3 w-sm-auto portal-status-filter">
+      <select class="form-select bg-white" [value]="statusFiltro" (change)="onStatusFiltroChange($event)">
+        <option value="">Todos os status</option>
+        <option value="Em análise">Em análise</option>
+        <option value="Em execução">Em execução</option>
+        <option value="Concluído">Concluído</option>
+        <option value="Cancelado">Cancelado</option>
+      </select>
+    </div>
+  </div>
+</div>
+
 <!-- Orders list -->
-<div class="d-flex flex-column gap-2">
-  <div *ngFor="let pedido of pedidos"
-       class="card card-body d-flex flex-row align-items-center justify-content-between cursor-pointer mb-0 border-transparent shadow-sm hover-shadow-lg transition-base"
+<div *ngIf="pedidosFiltrados.length != 0" class="d-flex flex-column gap-2">
+  <div *ngFor="let pedido of pedidosFiltrados"
+       class="card card-body d-flex flex-row align-items-center justify-content-between cursor-pointer mb-0 transition-base"
        (click)="verDetalhes(pedido)">
-    <div class="d-flex align-items-center gap-3">
-      <div class="bg-primary bg-opacity-10 text-primary rounded-pill d-flex align-items-center justify-content-center flex-shrink-0" style="width: 48px; height: 48px;">
+    <div class="d-flex align-items-center gap-3 portal-order-main">
+      <div class="bg-primary bg-opacity-10 text-primary rounded-pill d-flex align-items-center justify-content-center flex-shrink-0 portal-order-icon">
         <i [class]="pedido.iconClass + ' fs-xl'"></i>
       </div>
       <div>
-        <h6 class="mb-0 fw-semibold text-body">{{ pedido.servico }}</h6>
-        <small class="text-muted">Protocolo: {{ pedido.protocolo }} &middot; {{ pedido.data }}</small>
+        <h5 class="mb-1 fw-semibold text-body">{{ pedido.servico }}</h5>
+        <div class="text-muted fs-sm">Protocolo: {{ pedido.protocolo }} &middot; {{ pedido.data }}</div>
       </div>
     </div>
     <div class="d-flex align-items-center gap-3">
-      <span [class]="pedido.statusClass" class="badge">{{ pedido.status }}</span>
+      <span [class]="pedido.statusClass">{{ pedido.status }}</span>
       <div class="text-muted bg-light rounded-pill p-1 d-flex">
         <i class="ph ph-caret-right"></i>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Empty state -->
+<div *ngIf="pedidosFiltrados.length == 0" class="text-center py-5">
+  <i class="ph ph-magnifying-glass fs-1 text-muted opacity-50"></i>
+  <p class="text-muted mt-3 mb-0">Nenhuma solicitação encontrada.</p>
+</div>
+
+<!-- Pagination -->
+<div *ngIf="pedidosFiltrados.length != 0" class="card card-body mt-2 mb-0 portal-pagination-toolbar">
+  <div class="d-flex flex-column flex-sm-row align-items-sm-center gap-2">
+    <span class="text-muted fs-sm me-sm-auto">
+      Mostrando {{ totalPedidos }} de {{ totalPedidos }} solicitações
+    </span>
+
+    <div class="d-flex align-items-center justify-content-between justify-content-sm-end gap-3">
+      <span class="text-muted fs-sm text-nowrap">{{ paginaAtual }} de {{ totalPaginas }}</span>
+
+      <ul class="pagination pagination-flat mb-0">
+        <li class="page-item disabled">
+          <button type="button" class="page-link rounded-pill px-0" aria-label="Página anterior" disabled>
+            <i class="ph ph-caret-left"></i>
+          </button>
+        </li>
+        <li class="page-item ms-1 disabled">
+          <button type="button" class="page-link rounded-pill px-0" aria-label="Próxima página" disabled>
+            <i class="ph ph-caret-right"></i>
+          </button>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

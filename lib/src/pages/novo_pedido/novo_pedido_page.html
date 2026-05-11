@@ -1,196 +1,50 @@
-
-<!-- Wizard steps indicator -->
-<div class="portal-stepper-horizontal d-flex justify-content-center mb-4">
-  <div class="d-flex align-items-center position-relative w-100" style="max-width: 400px;">
-    <div class="position-absolute top-50 start-0 end-0 bg-light" style="height: 2px; transform: translateY(-50%); z-index: 0;"></div>
-    
-    <div class="d-flex flex-column align-items-center position-relative zindex-1" style="flex: 1;">
-      <div class="rounded-circle d-flex align-items-center justify-content-center mb-1 text-white shadow-sm"
-           [class.bg-primary]="currentStep >= 0"
-           [class.bg-light]="currentStep < 0"
-           [class.text-body]="currentStep < 0"
-           style="width: 32px; height: 32px;">
-        <span *ngIf="currentStep == 0">1</span>
-        <i *ngIf="currentStep > 0" class="ph ph-check"></i>
-      </div>
-      <span class="fs-xs fw-semibold" [class.text-primary]="currentStep >= 0" [class.text-muted]="currentStep < 0">Serviço</span>
+<!-- Alert do serviço selecionado -->
+<template [ngIf]="servicoSelecionado != null">
+  <div class="alert alert-success d-flex align-items-center gap-3 rounded-3 mb-4 py-3 px-4">
+    <div class="portal-servico-header-icon bg-white bg-opacity-75 rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
+      <div class="portal-service-icon-svg text-success" [iconMask]="servico.iconFile"></div>
     </div>
-
-    <div class="d-flex flex-column align-items-center position-relative zindex-1" style="flex: 1;">
-      <div class="rounded-circle d-flex align-items-center justify-content-center mb-1 text-white shadow-sm transition-base"
-           [class.bg-primary]="currentStep >= 1"
-           [class.bg-light]="currentStep < 1"
-           [class.text-body]="currentStep < 1"
-           style="width: 32px; height: 32px;">
-        <span *ngIf="currentStep <= 1">2</span>
-        <i *ngIf="currentStep > 1" class="ph ph-check"></i>
-      </div>
-      <span class="fs-xs fw-semibold" [class.text-primary]="currentStep >= 1" [class.text-muted]="currentStep < 1">Endereço</span>
+    <div>
+      <h6 class="fw-bold mb-0 text-body">{{ servico.titulo }}</h6>
+      <span class="text-muted fs-sm">{{ servico.descricao }}</span>
     </div>
+  </div>
+</template>
 
-    <div class="d-flex flex-column align-items-center position-relative zindex-1" style="flex: 1;">
-      <div class="rounded-circle d-flex align-items-center justify-content-center mb-1 text-white shadow-sm transition-base"
-           [class.bg-primary]="currentStep >= 2"
-           [class.bg-light]="currentStep < 2"
-           [class.text-body]="currentStep < 2"
-           style="width: 32px; height: 32px;">
-        <span>3</span>
-      </div>
-      <span class="fs-xs fw-semibold" [class.text-primary]="currentStep >= 2" [class.text-muted]="currentStep < 2">Detalhes</span>
+<!-- Formulário -->
+<div class="mb-4">
+  <label class="form-label fw-semibold">Endereço da coleta <span class="text-danger">*</span></label>
+  <div class="input-group">
+    <input type="text" class="form-control" placeholder="Rua das Palmeiras, 123 - Recreio - Rio das Ostras" [(ngModel)]="endereco">
+    <button class="btn btn-light border" type="button"><i class="ph ph-magnifying-glass"></i></button>
+  </div>
+</div>
+
+<div class="mb-4">
+  <label class="form-label fw-semibold">Ponto de referência</label>
+  <input type="text" class="form-control" placeholder="Em frente à praça do bairro" [(ngModel)]="referencia">
+</div>
+
+<div class="mb-4">
+  <label class="form-label fw-semibold">Descrição da solicitação <span class="text-danger">*</span></label>
+  <textarea class="form-control" rows="4" placeholder="Galhos de poda de árvore em frente à residência." [(ngModel)]="descricaoProblema"></textarea>
+  <div class="form-text text-end">{{ descricaoProblema.length }}/500</div>
+</div>
+
+<div class="mb-4">
+  <label class="form-label fw-semibold">Foto do local (opcional)</label>
+  <div class="d-flex flex-wrap gap-3 mt-1">
+    <!-- Botão de Upload -->
+    <div class="portal-upload-area">
+      <i class="ph ph-upload-simple mb-1 fs-3 text-muted"></i>
+      <span class="fw-semibold text-body fs-sm">Adicionar foto</span>
+      <span class="fs-xs text-muted">Máx. 5 fotos (5MB cada)</span>
     </div>
   </div>
 </div>
 
-<!-- Step content -->
-<div class="card portal-request-card">
-  <div class="card-body p-4">
-
-    <!-- Step 1: Serviço -->
-    <div *ngIf="currentStep == 0">
-      <h6 class="fw-bold mb-3">Selecione o serviço</h6>
-      <p class="text-muted fs-sm">Qual serviço você deseja solicitar?</p>
-
-      <div class="row g-3 mt-2">
-        <div class="col-md-6">
-          <div class="card portal-select-card h-100 cursor-pointer"
-               [class.border-primary]="servicoSelecionado == 'Coleta de Galhada'"
-               (click)="servicoSelecionado = 'Coleta de Galhada'">
-            <div class="card-body d-flex align-items-center gap-3">
-              <i class="ph ph-tree fs-3 text-primary"></i>
-              <div>
-                <div class="fw-semibold">Coleta de Galhada</div>
-                <small class="text-muted">Limpeza Urbana</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card portal-select-card h-100 cursor-pointer"
-               [class.border-primary]="servicoSelecionado == 'Tapa-Buraco'"
-               (click)="servicoSelecionado = 'Tapa-Buraco'">
-            <div class="card-body d-flex align-items-center gap-3">
-              <i class="ph ph-road-horizon fs-3 text-primary"></i>
-              <div>
-                <div class="fw-semibold">Tapa-Buraco</div>
-                <small class="text-muted">Infraestrutura</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card portal-select-card h-100 cursor-pointer"
-               [class.border-primary]="servicoSelecionado == 'Iluminação Pública'"
-               (click)="servicoSelecionado = 'Iluminação Pública'">
-            <div class="card-body d-flex align-items-center gap-3">
-              <i class="ph ph-lightbulb fs-3 text-primary"></i>
-              <div>
-                <div class="fw-semibold">Iluminação Pública</div>
-                <small class="text-muted">Infraestrutura</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="card portal-select-card h-100 cursor-pointer"
-               [class.border-primary]="servicoSelecionado == 'Coleta de Inservíveis'"
-               (click)="servicoSelecionado = 'Coleta de Inservíveis'">
-            <div class="card-body d-flex align-items-center gap-3">
-              <i class="ph ph-trash fs-3 text-primary"></i>
-              <div>
-                <div class="fw-semibold">Coleta de Inservíveis</div>
-                <small class="text-muted">Limpeza Urbana</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 2: Endereço -->
-    <div *ngIf="currentStep == 1">
-      <h6 class="fw-bold mb-3">Endereço da solicitação</h6>
-      <p class="text-muted fs-sm">Informe o local onde o serviço deve ser realizado.</p>
-
-      <div class="row g-3 mt-2">
-        <div class="col-md-4">
-          <label class="form-label fw-semibold fs-sm">CEP</label>
-          <input type="text" class="form-control" placeholder="28890-000" [(ngModel)]="cep">
-        </div>
-        <div class="col-md-8">
-          <label class="form-label fw-semibold fs-sm">Logradouro</label>
-          <input type="text" class="form-control" placeholder="Rua, Avenida..." [(ngModel)]="logradouro">
-        </div>
-        <div class="col-md-3">
-          <label class="form-label fw-semibold fs-sm">Número</label>
-          <input type="text" class="form-control" placeholder="123" [(ngModel)]="numero">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label fw-semibold fs-sm">Complemento</label>
-          <input type="text" class="form-control" placeholder="Apto, bloco..." [(ngModel)]="complemento">
-        </div>
-        <div class="col-md-5">
-          <label class="form-label fw-semibold fs-sm">Bairro</label>
-          <input type="text" class="form-control" placeholder="Nome do bairro" [(ngModel)]="bairro">
-        </div>
-        <div class="col-12">
-          <label class="form-label fw-semibold fs-sm">Ponto de referência</label>
-          <input type="text" class="form-control" placeholder="Próximo a..." [(ngModel)]="referencia">
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 3: Detalhes -->
-    <div *ngIf="currentStep == 2">
-      <h6 class="fw-bold mb-3">Detalhes da solicitação</h6>
-      <p class="text-muted fs-sm">Descreva o problema com o máximo de detalhes possível.</p>
-
-      <div class="row g-3 mt-2">
-        <div class="col-12">
-          <label class="form-label fw-semibold fs-sm">Descrição do problema</label>
-          <textarea class="form-control" rows="4"
-                    placeholder="Descreva detalhadamente o problema..."
-                    [(ngModel)]="descricaoProblema"></textarea>
-        </div>
-        <div class="col-md-6">
-          <label class="form-label fw-semibold fs-sm">Urgência</label>
-          <select class="form-select" [(ngModel)]="urgencia">
-            <option value="baixa">Baixa</option>
-            <option value="normal">Normal</option>
-            <option value="alta">Alta</option>
-          </select>
-        </div>
-        <div class="col-12">
-          <div class="alert alert-info alert-icon-start" role="alert">
-            <span class="alert-icon bg-info text-white">
-              <i class="ph-info"></i>
-            </span>
-            <strong>Resumo:</strong> {{ servicoSelecionado }} em {{ logradouro }}, {{ numero }} – {{ bairro }}.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Card footer with nav buttons -->
-  <div class="card-footer d-flex justify-content-between bg-transparent py-3 px-4">
-    <button class="btn btn-light"
-            [disabled]="currentStep == 0"
-            (click)="prevStep()">
-      <i class="ph ph-arrow-left me-1"></i> Voltar
-    </button>
-
-    <button *ngIf="currentStep < 2"
-            class="btn btn-primary"
-            [disabled]="!canAdvance"
-            (click)="nextStep()">
-      Próximo <i class="ph ph-arrow-right ms-1"></i>
-    </button>
-
-    <button *ngIf="currentStep == 2"
-            class="btn btn-success"
-            [disabled]="!canAdvance"
-            (click)="enviarPedido()">
-      <i class="ph ph-paper-plane-tilt me-1"></i> Enviar solicitação
-    </button>
-  </div>
+<!-- Botões de ação -->
+<div class="d-flex justify-content-end gap-3 pt-3 border-top">
+  <button type="button" class="btn btn-light border px-4" (click)="cancelar()">Cancelar</button>
+  <button type="button" class="btn btn-primary px-4" [disabled]="!canAdvance" (click)="enviarPedido()">Enviar solicitação</button>
 </div>
