@@ -121,7 +121,7 @@ class MainPageComponent implements CanReuse, OnInit, OnDestroy {
 
   String get layout6LogoSrc => isDarkTheme
       ? 'assets/images/logo_pmro_2017_branca.svg'
-      : 'assets/images/logo_pmro_2017_preta.svg';
+      : 'assets/images/logo_pmro_2017_cinza.svg';
 
   void setTheme(bool dark) {
     isDarkTheme = dark;
