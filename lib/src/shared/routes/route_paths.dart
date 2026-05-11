@@ -7,6 +7,8 @@ class PortalRoutePaths {
   static final login = RoutePath(path: 'login');
   static final loginGovBr = RoutePath(path: 'login-govbr');
   static final cadastro = RoutePath(path: 'cadastro');
+  static final consultaProcessos = RoutePath(path: 'consulta-processos');
+  static final visualizaProcesso = RoutePath(path: 'visualiza-processo');
 
   /// ---------------- shell restrito ----------------
   static final restrito = RoutePath(path: 'restrito');

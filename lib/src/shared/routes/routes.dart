@@ -12,6 +12,8 @@ import 'package:portal_sali/src/pages/cadastro/cadastro_page.template.dart'
     as cadastro_page;
 import 'package:portal_sali/src/pages/login_govbr/login_govbr_page.template.dart'
     as login_govbr_page;
+import 'package:portal_sali/src/pages/consulta_processos/consulta_processos_page.template.dart'
+    as consulta_processos_page;
 
 // Shell privado (contém sidebar + navbar + router-outlet interno)
 import 'package:portal_sali/src/pages/main_page/main_page.template.dart'
@@ -61,10 +63,20 @@ class PortalRoutes {
     routePath: PortalRoutePaths.cadastro,
     component: cadastro_page.CadastroPageComponentNgFactory,
   );
-  
+
   static final loginGovBr = RouteDefinition(
     routePath: PortalRoutePaths.loginGovBr,
     component: login_govbr_page.LoginGovbrPageComponentNgFactory,
+  );
+
+  static final consultaProcessos = RouteDefinition(
+    routePath: PortalRoutePaths.consultaProcessos,
+    component: consulta_processos_page.ConsultaProcessosPageComponentNgFactory,
+  );
+
+  static final visualizaProcesso = RouteDefinition(
+    routePath: PortalRoutePaths.visualizaProcesso,
+    component: consulta_processos_page.ConsultaProcessosPageComponentNgFactory,
   );
 
   static final restrito = RouteDefinition(
@@ -122,6 +134,8 @@ class PortalRoutes {
     login,
     loginGovBr,
     cadastro,
+    consultaProcessos,
+    visualizaProcesso,
     restrito,
   ];
 
