@@ -9,16 +9,22 @@ import '../../shared/models/servico_item.dart';
 /// Diretiva para aplicar máscara SVG ignorando sanitização restrita do Angular.
 @Directive(selector: '[iconMask]')
 class IconMaskDirective {
+  static const String _iconBasePath = 'assets/icones/lucide-icons-1.14.0';
+
   final HtmlElement element;
   IconMaskDirective(this.element);
 
   @Input('iconMask')
   set iconFile(String value) {
-    if (value.isNotEmpty) {
-      final url = "url('/assets/icones/lucide-icons-1.14.0/$value')";
-      element.style.setProperty('-webkit-mask-image', url);
-      element.style.setProperty('mask-image', url);
+    if (value.isEmpty) {
+      element.style.removeProperty('-webkit-mask-image');
+      element.style.removeProperty('mask-image');
+      return;
     }
+
+    final url = "url('$_iconBasePath/$value')";
+    element.style.setProperty('-webkit-mask-image', url);
+    element.style.setProperty('mask-image', url);
   }
 }
 
