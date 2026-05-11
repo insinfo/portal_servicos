@@ -4,20 +4,42 @@ import 'package:ngrouter/ngrouter.dart';
 
 import '../../shared/routes/route_paths.dart';
 
+/// Diretiva para aplicar máscara SVG ignorando sanitização restrita do Angular.
+@Directive(selector: '[iconMask]')
+class IconMaskDirective {
+  final HtmlElement element;
+  IconMaskDirective(this.element);
+
+  @Input('iconMask')
+  set iconFile(String value) {
+    if (value.isNotEmpty) {
+      final url = "url('/assets/icones/lucide-icons-1.14.0/$value')";
+      element.style.setProperty('-webkit-mask-image', url);
+      element.style.setProperty('mask-image', url);
+    }
+  }
+}
+
 /// Catálogo de serviços disponíveis ao cidadão.
 class ServicoItem {
   const ServicoItem({
     required this.id,
     required this.titulo,
     required this.descricao,
-    required this.iconClass,
+    required this.iconFile,
+    required this.iconColorClass,
+    required this.badgeColorClass,
+    required this.badgeBgClass,
     required this.categoria,
   });
 
   final String id;
   final String titulo;
   final String descricao;
-  final String iconClass;
+  final String iconFile;
+  final String iconColorClass;
+  final String badgeColorClass;
+  final String badgeBgClass;
   final String categoria;
 }
 
@@ -25,7 +47,7 @@ class ServicoItem {
   selector: 'servicos-page',
   templateUrl: 'servicos_page.html',
   styleUrls: ['servicos_page.css'],
-  directives: [coreDirectives],
+  directives: [coreDirectives, IconMaskDirective],
   exports: [PortalRoutePaths],
 )
 class ServicosPageComponent {
@@ -39,86 +61,62 @@ class ServicosPageComponent {
     ServicoItem(
       id: 'coleta-galhada',
       titulo: 'Coleta de Galhada',
-      descricao: 'Solicite a coleta de galhos e resíduos vegetais.',
-      iconClass: 'ph ph-tree',
+      descricao: 'Solicite a coleta de galhos e resíduos de poda de árvores.',
+      iconFile: 'tree-deciduous.svg',
+      iconColorClass: 'text-teal',
+      badgeColorClass: 'text-success',
+      badgeBgClass: 'bg-success',
       categoria: 'Limpeza Urbana',
-    ),
-    ServicoItem(
-      id: 'tapa-buraco',
-      titulo: 'Tapa-Buraco',
-      descricao: 'Reporte buracos em vias públicas para reparo.',
-      iconClass: 'ph ph-road-horizon',
-      categoria: 'Infraestrutura',
-    ),
-    ServicoItem(
-      id: 'iluminacao',
-      titulo: 'Iluminação Pública',
-      descricao: 'Solicite reparo ou instalação de iluminação.',
-      iconClass: 'ph ph-lightbulb',
-      categoria: 'Infraestrutura',
     ),
     ServicoItem(
       id: 'coleta-inserviveis',
       titulo: 'Coleta de Inservíveis',
-      descricao: 'Agende a retirada de móveis e objetos grandes.',
-      iconClass: 'ph ph-trash',
+      descricao: 'Solicite a coleta de móveis e objetos inservíveis.',
+      iconFile: 'armchair.svg',
+      iconColorClass: 'text-indigo',
+      badgeColorClass: 'text-primary',
+      badgeBgClass: 'bg-primary',
       categoria: 'Limpeza Urbana',
     ),
     ServicoItem(
-      id: 'poda-arvore',
-      titulo: 'Poda de Árvore',
-      descricao: 'Solicite a poda de árvores em área pública.',
-      iconClass: 'ph ph-plant',
-      categoria: 'Meio Ambiente',
-    ),
-    ServicoItem(
-      id: 'limpeza-terreno',
-      titulo: 'Limpeza de Terreno',
-      descricao: 'Solicite a limpeza de terreno baldio.',
-      iconClass: 'ph ph-broom',
-      categoria: 'Limpeza Urbana',
-    ),
-    ServicoItem(
-      id: 'drenagem',
-      titulo: 'Drenagem / Bueiros',
-      descricao: 'Reporte problemas em bueiros ou rede de drenagem.',
-      iconClass: 'ph ph-drop',
+      id: 'iluminacao',
+      titulo: 'Iluminação Pública',
+      descricao: 'Solicite reparo em iluminação pública com defeito.',
+      iconFile: 'lightbulb.svg',
+      iconColorClass: 'text-warning',
+      badgeColorClass: 'text-warning',
+      badgeBgClass: 'bg-warning',
       categoria: 'Infraestrutura',
     ),
     ServicoItem(
-      id: 'sinalizacao',
-      titulo: 'Sinalização Viária',
-      descricao: 'Solicite instalação ou reparo de placas e semáforos.',
-      iconClass: 'ph ph-traffic-sign',
-      categoria: 'Trânsito',
-    ),
-    ServicoItem(
-      id: 'calcada',
-      titulo: 'Reparo de Calçada',
-      descricao: 'Solicite conserto de calçadas danificadas.',
-      iconClass: 'ph ph-footprints',
+      id: 'tapa-buraco',
+      titulo: 'Tapa Buraco',
+      descricao: 'Solicite o reparo de buracos em vias públicas.',
+      iconFile: 'construction.svg',
+      iconColorClass: 'text-indigo',
+      badgeColorClass: 'text-purple',
+      badgeBgClass: 'bg-purple',
       categoria: 'Infraestrutura',
     ),
     ServicoItem(
-      id: 'agua-esgoto',
-      titulo: 'Água e Esgoto',
-      descricao: 'Reporte vazamentos ou problemas na rede.',
-      iconClass: 'ph ph-waves',
-      categoria: 'Saneamento',
+      id: 'limpeza-boca-lobo',
+      titulo: 'Limpeza de Boca de Lobo',
+      descricao: 'Solicite a limpeza de bueiros e bocas de lobo.',
+      iconFile: 'waves-arrow-down.svg',
+      iconColorClass: 'text-indigo',
+      badgeColorClass: 'text-info',
+      badgeBgClass: 'bg-info',
+      categoria: 'Drenagem',
     ),
     ServicoItem(
-      id: 'ouvidoria',
-      titulo: 'Ouvidoria',
-      descricao: 'Envie sugestões, reclamações ou elogios.',
-      iconClass: 'ph ph-megaphone-simple',
-      categoria: 'Atendimento',
-    ),
-    ServicoItem(
-      id: 'alvara',
-      titulo: 'Alvará e Licenças',
-      descricao: 'Solicite alvarás e licenças de funcionamento.',
-      iconClass: 'ph ph-file-text',
-      categoria: 'Documentação',
+      id: 'outros',
+      titulo: 'Outros Serviços',
+      descricao: 'Consulte outros serviços disponíveis para solicitação.',
+      iconFile: 'message-circle-more.svg',
+      iconColorClass: 'text-purple',
+      badgeColorClass: 'text-danger',
+      badgeBgClass: 'bg-danger',
+      categoria: 'Outros',
     ),
   ];
 
