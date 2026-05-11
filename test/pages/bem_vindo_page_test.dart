@@ -1,5 +1,7 @@
+// ignore_for_file: library_annotations
+
 @TestOn('browser')
-library bem_vindo_page_test;
+
 
 import 'package:test/test.dart';
 import 'package:ngtest/ngtest.dart';

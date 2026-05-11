@@ -4,6 +4,8 @@ import 'package:ngrouter/ngrouter.dart';
 
 import 'package:portal_sali/src/pages/bem_vindo/bem_vindo_page.template.dart'
     as bem_vindo_page;
+import 'package:portal_sali/src/pages/bem_vindo_alt/bem_vindo_alt_page.template.dart'
+    as bem_vindo_alt_page;
 import 'package:portal_sali/src/pages/login/login_page.template.dart'
     as login_page;
 import 'package:portal_sali/src/pages/cadastro/cadastro_page.template.dart'
@@ -43,6 +45,11 @@ class PortalRoutes {
     routePath: PortalRoutePaths.bemVindo,
     component: bem_vindo_page.BemVindoPageComponentNgFactory,
     useAsDefault: true,
+  );
+
+  static final bemVindoAlt = RouteDefinition(
+    routePath: PortalRoutePaths.bemVindoAlt,
+    component: bem_vindo_alt_page.BemVindoAltPageComponentNgFactory,
   );
 
   static final login = RouteDefinition(
@@ -111,6 +118,7 @@ class PortalRoutes {
 
   static final allPublic = <RouteDefinition>[
     bemVindo,
+    bemVindoAlt,
     login,
     loginGovBr,
     cadastro,

@@ -1,11 +1,12 @@
 <div class="portal-welcome w-100 vh-100 position-relative overflow-hidden bg-vista">
   <video #bgVideo
          class="portal-bg-video position-absolute top-0 start-0 w-100 h-100"
+         poster="assets/videos/ro_poster.jpg"
          autoplay
          muted
          loop
          preload="auto"
-         poster="assets/images/background-vista.jpeg"
+         
          [attr.playsinline]="''"
          [attr.webkit-playsinline]="''">
     <source src="assets/videos/ro.mp4" type="video/mp4">
@@ -30,7 +31,7 @@
     
       <!-- Logo -->
       <div class="portal-brand d-flex align-items-center justify-content-center gap-3 mb-5">
-        <img src="assets/images/brasao_branco_sm.png" alt="Brasão" class="logo-brasao">
+        <img src="assets/images/logo_pmro_2017_branca.svg" alt="Brasão" class="logo-brasao">
         <div class="text-start">
           <div class="fw-bold text-uppercase fs-xs text-white opacity-75 letter-spacing-sm">Prefeitura</div>
           <div class="fw-bold text-uppercase fs-lg text-white lh-1">Rio das Ostras</div>
@@ -79,8 +80,7 @@
 
       <!-- Login Button -->
       <button class="btn btn-light text-primary fw-bold px-5 py-3 shadow mb-5 d-inline-flex align-items-center gap-2 btn-login" (click)="goToLogin()">
-        <i class="ph ph-lock-key-fill text-primary"></i>
-        ENTRAR COM GOV.BR
+        <i class="ph ph-lock-key-fill text-primary"></i>ENTRAR COM GOV.BR
       </button>
 
       <!-- Divider -->
