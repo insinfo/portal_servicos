@@ -9,7 +9,7 @@
     </div>
 
     <div
-      class="d-flex w-100 w-xl-auto overflow-auto overflow-xl-visible scrollbar-hidden border-top border-top-xl-0 order-1 order-xl-0 pt-2 pt-xl-0 mt-2 mt-xl-0">
+      class="portal-layout6-nav-shell d-flex w-100 w-xl-auto scrollbar-hidden border-top border-top-xl-0 order-1 order-xl-0 pt-2 pt-xl-0 mt-2 mt-xl-0">
       <ul class="nav gap-1 justify-content-center flex-nowrap flex-xl-wrap mx-auto">
         <li class="nav-item">
           <a [routerLink]="PortalRoutePaths.home.toUrl()" class="navbar-nav-link rounded"
@@ -19,17 +19,18 @@
           </a>
         </li>
 
-        <li class="nav-item nav-item-dropdown-xl dropdown" liDropdown placement="bottom">
+        <li class="nav-item nav-item-dropdown-xl dropdown portal-navigation-dropdown" liDropdown placement="bottom"
+          container="inline" display="static">
           <button type="button" class="navbar-nav-link dropdown-toggle rounded border-0"
             [class.active]="isNavigationMenuActive" liDropdownToggle>
             <i class="ph-list-dashes me-2"></i>
             Navegação
           </button>
 
-          <div class="dropdown-menu p-0" liDropdownMenu>
-            <div class="d-xl-flex">
+          <div class="dropdown-menu p-0 portal-navigation-menu" liDropdownMenu>
+            <div class="d-xl-flex portal-navigation-menu__layout">
               <div
-                class="d-flex flex-row flex-xl-column bg-light overflow-auto overflow-xl-visible rounded-top rounded-top-xl-0 rounded-start-xl">
+                class="portal-navigation-menu__primary d-flex flex-row flex-xl-column bg-light overflow-auto overflow-xl-visible rounded-top rounded-top-xl-0 rounded-start-xl">
                 <div class="flex-1 border-bottom border-bottom-xl-0 p-2 p-xl-3">
                   <div class="fw-bold border-bottom d-none d-xl-block pb-2 mb-2">Portal</div>
                   <ul class="nav nav-pills flex-xl-column flex-nowrap text-nowrap justify-content-center wmin-xl-300">
@@ -45,7 +46,7 @@
                 </div>
               </div>
 
-              <div class="dropdown-scrollable-xl p-3 wmin-xl-500">
+              <div class="dropdown-scrollable-xl portal-navigation-menu__secondary p-3 wmin-xl-500">
                 <div class="row">
                   <div class="col-lg-6 mb-3 mb-lg-0">
                     <div class="fw-bold border-bottom pb-2 mb-2">Solicitações</div>
