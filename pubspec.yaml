@@ -12,9 +12,9 @@ dependencies:
   ngrouter: 4.0.0-dev.3
 
   essential_core: ^1.2.0
-  #limitless_ui: ^1.0.0-dev.18
-  limitless_ui: 
-    path: ../limitless_ui
+  limitless_ui: ^1.0.0-dev.19
+  # limitless_ui: 
+  #   path: ../limitless_ui
 
 dev_dependencies:
   build_runner: ^2.4.12
